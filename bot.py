@@ -16,6 +16,10 @@ class MyClient(discord.Client):
         if message.content.startswith('!hello'):
             await message.reply('Hello!', mention_author=True)
 
+        if message.content.startswith('!1d'):
+            msg_array =  message.content.split('d')
+            await message.reply(msg_array[1], mention_author=True)
+
 
 intents = discord.Intents.default()
 intents.message_content = True
