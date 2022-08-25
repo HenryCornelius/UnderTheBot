@@ -20,7 +20,7 @@ class MyClient(discord.Client):
             msg_array =  message.content.split('d')
             channel_id = message.channel.id
             channel = self.get_channel(channel_id)
-            await  channel.message.send(random.randrange(1,int(msg_array[1]),1), mention_author=True)
+            await  channel.send(random.randrange(1,int(msg_array[1]),1), mention_author=True)
 
 
 intents = discord.Intents.default()
