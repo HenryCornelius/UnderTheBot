@@ -57,7 +57,7 @@ class MyClient(discord.Client):
 
         if message.content.startswith('!randomChamp'):
             retour = lolChamp.listeChampion[random.randrange(0,len(lolChamp.listeChampion),1)]
-            await message.reply("Voici... Votre champion : " + retour.name + "en " + retour.role, mention_author=True)
+            await message.reply("Voici... Votre champion : " + retour.name + " en " + retour.role, mention_author=True)
         
 
 intents = discord.Intents.default()
