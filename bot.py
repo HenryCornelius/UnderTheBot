@@ -18,9 +18,14 @@ class MyClient(discord.Client):
 
         if message.content.startswith('!1d'):
             msg_array =  message.content.split('d')
-            channel_id = message.channel.id
-            channel = self.get_channel(channel_id)
-            await  channel.send(random.randrange(1,int(msg_array[1]),1), mention_author=True)
+            # on recupere l'id du channel dans lequel le message à été envoyé puis le channel lui même
+                # channel_id = message.channel.id
+                # channel = self.get_channel(channel_id)
+            chiffre = msg_array[1][3:message.content.find(' ')]
+            if chiffre.isdigit():
+                await message.reply(random.randrange(1,int(chiffre),1), mention_author=True)
+            else:
+                await message.reply("Something went wrong...", mention_author=True)
 
 
 intents = discord.Intents.default()
