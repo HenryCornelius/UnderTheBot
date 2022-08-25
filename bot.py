@@ -1,7 +1,7 @@
 # This example requires the 'message_content' privileged intent to function.
 
 import discord
-
+import random
 
 class MyClient(discord.Client):
     async def on_ready(self):
