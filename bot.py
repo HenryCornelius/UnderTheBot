@@ -30,6 +30,23 @@ class MyClient(discord.Client):
                 await message.reply(":8ball:" + " : " + str(random.randrange(1,int(chiffre),1)), mention_author=True)
             else:
                 await message.reply("Something went wrong...", mention_author=True)
+        
+        if message.content.startswith('!2d'):
+            # on recupere l'id du channel dans lequel le message à été envoyé puis le channel lui même
+                # channel_id = message.channel.id
+                # channel = self.get_channel(channel_id)
+            if message.content.count(' ') > 0:
+                chiffres = message.content.split(' ')
+            else:
+                if message.content[3:].isdigit():
+                    chiffre = message.content[3:]
+            if chiffre is None:
+                for i in range(2):
+                    if chiffres[i].isdigit() != True:
+                        await message.reply("L'argument n°"+(i+1)" n'est pas un chiffre", mention_author=True)
+                await message.reply("1er dé: "+random.randrange(1,int(chiffres[0]),1)+", 2eme dé: "+random.randrange(1,int(chiffres[1]),1), mention_author=True)
+            else:
+                await message.reply("1er dé: "+random.randrange(1,int(chiffre),1)+", 2eme dé: "+random.randrange(1,int(chiffre),1), mention_author=True)
 
 
 intents = discord.Intents.default()
