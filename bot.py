@@ -26,10 +26,8 @@ class MyClient(discord.Client):
                 chiffre = input[0:input.find(' ')]
             else:
                 chiffre = input
-            print(chiffre)
-            print(chiffre.isdigit())
-            if bool(chiffre.isdigit()):
-                await message.reply(random.randrange(1,int(chiffre),1), mention_author=True)
+            if chiffre.isdigit():
+                await message.reply(":8ball:" + " : " + random.randrange(1,int(chiffre),1), mention_author=True)
             else:
                 await message.reply("Something went wrong...", mention_author=True)
 
