@@ -22,6 +22,8 @@ class MyClient(discord.Client):
                 # channel_id = message.channel.id
                 # channel = self.get_channel(channel_id)
             chiffre = msg_array[1][0:message.content.find(' ')]
+            print(chiffre)
+            print(chiffre.isdigit())
             if chiffre.isdigit():
                 await message.reply(random.randrange(1,int(chiffre),1), mention_author=True)
             else:
