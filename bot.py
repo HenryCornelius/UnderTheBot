@@ -35,6 +35,8 @@ class MyClient(discord.Client):
             # on recupere l'id du channel dans lequel le message à été envoyé puis le channel lui même
                 # channel_id = message.channel.id
                 # channel = self.get_channel(channel_id)
+            chiffre = None
+
             if message.content.count(' ') > 0:
                 chiffres = message.content.split(' ')
             else:
