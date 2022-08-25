@@ -40,6 +40,8 @@ class MyClient(discord.Client):
             else:
                 if message.content[3:].isdigit():
                     chiffre = message.content[3:]
+                else:
+                    await message.reply("L'argument n'est pas un chiffre", mention_author=True)
             if chiffre is None:
                 for i in range(2):
                     if chiffres[i].isdigit() != True:
