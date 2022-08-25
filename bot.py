@@ -56,7 +56,7 @@ class MyClient(discord.Client):
                 await message.reply(":8ball: "+str(random.randrange(1,int(chiffre),1))+", :8ball: "+str(random.randrange(1,int(chiffre),1)), mention_author=True)
 
         if message.content.startswith('!randomChamp'):
-            await message.reply("Voici... Votre champion : " + lolChamp.listeChampion[random.randrange(0,len(lolChamp.listeChampion),1)], mention_author=True)
+            await message.reply("Voici... Votre champion : " + lolChamp.listeChampion[random.randrange(0,len(lolChamp.listeChampion),1)].name, mention_author=True)
         
 
 intents = discord.Intents.default()
