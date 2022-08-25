@@ -27,10 +27,10 @@ class MyClient(discord.Client):
             else:
                 chiffre = input
             if chiffre.isdigit():
-                await message.add_reaction("thumbsup")
+                await message.add_reaction('\N{THUMBS UP SIGN}')
                 await message.reply(":8ball:" + " : " + str(random.randrange(1,int(chiffre),1)), mention_author=True)
             else:
-                await message.add_reaction("thumbsdown")
+                await message.add_reaction('\N{THUMBS DOWN SIGN}')
                 await message.reply("Something went wrong...", mention_author=True)
         
         if message.content.startswith('!2d'):
