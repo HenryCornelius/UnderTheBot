@@ -18,7 +18,7 @@ class MyClient(discord.Client):
 
         if message.content.startswith('!1d'):
             msg_array =  message.content.split('d')
-            await message.reply(random.randrange(1,msg_array[1],1), mention_author=True)
+            await message.reply(random.randrange(1,int(msg_array[1]),1), mention_author=True)
 
 
 intents = discord.Intents.default()
