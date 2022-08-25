@@ -36,12 +36,12 @@ class MyClient(discord.Client):
                 # channel_id = message.channel.id
                 # channel = self.get_channel(channel_id)
             chiffre = None
-
-            if message.content.count(' ') > 0:
-                chiffres = message.content.split(' ')
+            msg_input = message.content[3:]
+            if msg_input.count(' ') > 0:
+                chiffres = msg_input.split(' ')
             else:
-                if message.content[3:].isdigit():
-                    chiffre = message.content[3:]
+                if msg_input.isdigit():
+                    chiffre = msg_input
                 else:
                     await message.reply("L'argument n'est pas un chiffre", mention_author=True)
             if chiffre is None:
