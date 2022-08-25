@@ -22,7 +22,7 @@ class MyClient(discord.Client):
                 # channel_id = message.channel.id
                 # channel = self.get_channel(channel_id)
             if msg_array[1].find(' ') != -1:
-                chiffre = msg_array[1][0:message.find(' ')-2]
+                chiffre = msg_array[1][0:msg_array[1].find(' ')-2]
             else:
                 chiffre = msg_array[1]
             print(chiffre)
