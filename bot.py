@@ -21,8 +21,8 @@ class MyClient(discord.Client):
             # on recupere l'id du channel dans lequel le message à été envoyé puis le channel lui même
                 # channel_id = message.channel.id
                 # channel = self.get_channel(channel_id)
-            if message.content.find(' ') != -1:
-                chiffre = msg_array[1][0:message.content.find(' ')]
+            if msg_array[1].find(' ') != -1:
+                chiffre = msg_array[1][0:message.find(' ')-2]
             else:
                 chiffre = msg_array[1]
             print(chiffre)
