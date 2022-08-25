@@ -44,9 +44,9 @@ class MyClient(discord.Client):
                 for i in range(2):
                     if chiffres[i].isdigit() != True:
                         await message.reply("L'argument n°"+(i+1)+" n'est pas un chiffre", mention_author=True)
-                await message.reply("1er dé: "+random.randrange(1,int(chiffres[0]),1)+", 2eme dé: "+random.randrange(1,int(chiffres[1]),1), mention_author=True)
+                await message.reply("1er dé: "+str(random.randrange(1,int(chiffres[0]),1))+", 2eme dé: "+str(random.randrange(1,int(chiffres[1]),1)), mention_author=True)
             else:
-                await message.reply("1er dé: "+random.randrange(1,int(chiffre),1)+", 2eme dé: "+random.randrange(1,int(chiffre),1), mention_author=True)
+                await message.reply("1er dé: "+str(random.randrange(1,int(chiffre),1))+", 2eme dé: "+str(random.randrange(1,int(chiffre),1)), mention_author=True)
 
 
 intents = discord.Intents.default()
