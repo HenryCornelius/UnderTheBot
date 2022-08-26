@@ -87,7 +87,10 @@ class MyClient(discord.Client):
         if message.content.startswith('!checkLOL'):
             me = watcher.summoner.by_name(my_region, 'Tobia')
             me2 = watcher.summoner.by_name(my_region, 'Bìboun')
-            await message.reply("Tobia : " + me + " Bìboun " + me2, mention_author=True)
+            print(me)
+            print(me2)
+            await message.reply("Done !" + me2, mention_author=True)
+            # await message.reply("Tobia : " + me + " Bìboun " + me2, mention_author=True)
             return
 
 
