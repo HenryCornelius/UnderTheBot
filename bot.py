@@ -27,7 +27,7 @@ class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged in as {self.user} (ID: {self.user.id})')
         print('------')
-        activity_string = 'on {} servers.'.format(len(self.guilds))
+        activity_string = 'sur {} servers.'.format(len(self.guilds))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_string))
 
     async def on_message(self, message):
