@@ -29,7 +29,10 @@ class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged in as {self.user} (ID: {self.user.id})')
         print('------')
-        activity_string = 'sur {} servers.'.format(len(self.guilds))
+        if len(self.guilds) == 1:
+            activity_string = 'sur {} serveur.'.format(len(self.guilds))
+        else:
+            activity_string = 'sur {} serveurs.'.format(len(self.guilds))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_string))
 
     async def on_message(self, message):
@@ -166,7 +169,7 @@ class MyClient(discord.Client):
                     value= ranks['double'],
                     inline=False)
                 await message.channel.send(content=None, embed=embed)
-                react = '\U0001F44D'
+                react = '✅'
                 await message.add_reaction(react)
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
