@@ -3,6 +3,7 @@ import discord
 from riotwatcher import LolWatcher, ApiError
 import random
 import lolChamp
+import nacl
 
 api_key = 'RGAPI-b0046366-a360-4dd9-b191-54a876fd14b7'
 watcher = LolWatcher(api_key)
@@ -181,7 +182,7 @@ class MyClient(discord.Client):
             await destination.connect()
             return
         if message.content.startswith('!leave'):
-            await self.voice_client.disconnect()
+            await self.voice.channel.disconnect()
             return
 intents = discord.Intents.default()
 intents.message_content = True
