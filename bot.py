@@ -84,13 +84,10 @@ class MyClient(discord.Client):
             await message.reply("Voici... Votre champion : " + retour.name + " en " + retour.role, mention_author=True)
             return
 
-        if message.content.startswith('!checkLOL'):
-            me = watcher.summoner.by_name(my_region, 'Tobia')
-            me2 = watcher.summoner.by_name(my_region, 'Bìboun')
-            print(me)
-            print(me2)
-            await message.reply("Done !", mention_author=True)
-            # await message.reply("Tobia : " + me + " Bìboun " + me2, mention_author=True)
+        if message.content.startswith('!checkBiboun'):
+            biboun = watcher.summoner.by_name(my_region, 'Bìboun')
+            biboun_ranked = watcher.league.by_summoner(my_region, biboun_ranked['id'])
+            await message.reply("Bìboun : " + biboun_ranked.tier + " " + biboun_ranked.rank + " - " + biboun_ranked.leaguePoints + " LP", mention_author=True)
             return
 
 
