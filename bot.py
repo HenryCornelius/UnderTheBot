@@ -166,7 +166,7 @@ class MyClient(discord.Client):
                     value= ranks['double'],
                     inline=False)
                 await message.channel.send(content=None, embed=embed)
-                await message.add_reaction('\N{WHITE CHECK MARK}')
+                await message.add_reaction('\U0002705')
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
                 return
