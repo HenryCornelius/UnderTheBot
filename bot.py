@@ -84,7 +84,7 @@ class MyClient(discord.Client):
             await message.reply("Voici... Votre champion : " + retour.name + " en " + retour.role, mention_author=True)
             return
 
-        if message.content.startsWith('!checkLOL'):
+        if message.content.startswith('!checkLOL'):
             me = watcher.summoner.by_name(my_region, 'Tobia')
             me2 = watcher.summoner.by_name(my_region, 'Bìboun')
             await message.reply("Tobia : " + me + " Bìboun " + me2, mention_author=True)
