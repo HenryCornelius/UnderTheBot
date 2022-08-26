@@ -1,5 +1,6 @@
 # This example requires the 'message_content' privileged intent to function.
 
+from turtle import title
 import discord
 import random
 import lolChamp
@@ -112,7 +113,20 @@ class MyClient(discord.Client):
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
                 return
-        
+        if message.content.startwith('!test'):
+            msg_input = message.content[1:]
+            if msg_input.count(' ') > 0:
+                argument = msg_input.split(' ')[1]
+                summoner = watcher.summoner.by_name(my_region, argument)
+                summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
+                icon = watcher.data_dragon.profile_icons(summoner['profileIconId'])
+                print(icon)
+                embed = discord.Embed(title='**'+summoner['name']+'**')
+                embed.set_image(icon)
+                await message.channel.send(content=None, embed=embed)
+            else:
+                await message.reply("Il manque le nom d'invocateur", mention_author=True)
+                return
 
 intents = discord.Intents.default()
 intents.message_content = True
