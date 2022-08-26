@@ -100,19 +100,33 @@ class MyClient(discord.Client):
         if message.content.startswith('!checkRank'):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
-                argument = msg_input.split(' ')[1]
-                summoner = watcher.summoner.by_name(my_region, argument)
+                name = msg_input.split(' ')[1]
+                summoner = watcher.summoner.by_name(my_region, name)
                 if summoner is not None: 
                     summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
                     print(summoner_rank)
+                    queueType = "RANKED_SOLO_5x5"
+                    if msg_input.count(' ') < 2:
+                        if msg_input.split(' ')[2] == "SOLO" or msg_input.split(' ')[2] == "Solo" or msg_input.split(' ')[2] == "solo":
+                            queueType = "RANKED_SOLO_5x5"
+                        else:
+                            if msg_input.split(' ')[2] == "FLEX" or msg_input.split(' ')[2] == "Flex" or msg_input.split(' ')[2] == "flex":
+                                queueType = "RANKED_FLEX_SR"
+                            else:
+                                if msg_input.split(' ')[2] == "TFT" or msg_input.split(' ')[2] == "Tft" or msg_input.split(' ')[2] == "tft":
+                                    queueType = "RANKED_TFT_DOUBLE_UP"
+                                else:
+                                    await message.reply("Précise 'SOLO', 'TFT' ou 'FLEX' connard !", mention_author=True)
+                                    return
                     for i in range(len(summoner_rank)):
-                        if summoner_rank[i]['queueType'] == "RANKED_SOLO_5x5":
-                            rank_solo = summoner_rank[i]
-                    await message.reply(argument + " : " + rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP ", mention_author=True)
-                    return
+                            if summoner_rank[i]['queueType'] == queueType:
+                                rank_solo = summoner_rank[i]
+                                await message.reply(name + " : " + rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP ", mention_author=True)
+                                return
                 else:
                     await message.reply("Le nom d'invocateur est incorrect", mention_author=True) 
                     return
+
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
                 return
