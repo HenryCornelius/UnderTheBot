@@ -182,8 +182,7 @@ class MyClient(discord.Client):
             await destination.connect()
             return
         if message.content.startswith('!leave'):
-            destination = message.author.voice.channel
-            await self.user.voice.channel.disconnect()
+            await message.guild.voice_client.disconnect()
             return
 intents = discord.Intents.default()
 intents.message_content = True
