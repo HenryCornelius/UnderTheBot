@@ -121,7 +121,7 @@ class MyClient(discord.Client):
                 argument = msg_input.split(' ')[1]
                 summoner = watcher.summoner.by_name(my_region, argument)
                 summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
-                icon = watcher.data_dragon.profile_icons(summoner['profileIconId'])
+                icon = watcher.data_dragon.profile_icons(summoner['profileIconId'], False, 'fr_FR')
                 print(icon)
                 embed = discord.Embed(title='**'+summoner['name']+'**')
                 embed.set_image(icon)
