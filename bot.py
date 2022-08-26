@@ -155,12 +155,18 @@ class MyClient(discord.Client):
                     if summoner_rank[i]['queueType'] == 'RANKED_SOLO_5x5':
                         rank = summoner_rank[i]
                         ranks['solo'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP "
+                    else:
+                        ranks['solo'] = "Non classé"
                     if summoner_rank[i]['queueType'] == 'RANKED_FLEX_SR':
                         rank = summoner_rank[i]
                         ranks['flex'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP "
+                    else:
+                        ranks['flex'] = "Non classé"
                     if summoner_rank[i]['queueType'] == 'RANKED_TFT_DOUBLE_UP':
                         rank = summoner_rank[i]
                         ranks['double'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP "
+                    else:
+                        ranks['double'] = "Non classé"
                     
                     
                 embed.add_field(name='Solo/duo',
