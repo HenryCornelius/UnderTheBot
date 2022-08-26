@@ -4,6 +4,20 @@ import discord
 import random
 import lolChamp
 
+def create_help_embed():
+    embed = discord.Embed(title='**COMMANDS**',
+                        description='', colour=discord.Colour.green())
+    embed.add_field(name='`!1d<chiffre>`',
+                    value='Lance un dé. Exemple: `!1d6`',
+                    inline=False)
+    embed.add_field(name='`!2d<chiffre> [<chiffre>]`',
+                    value='Lance deux dés. Exemples: `!2d6` - `!2d6 8`',
+                    inline=False)
+    embed.add_field(name='`!randomChamp`',
+                    value='Selectionne un champion de manière aléatoire sur son rôle principal.',
+                    inline=False)
+    return embed
+
 class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged in as {self.user} (ID: {self.user.id})')
@@ -14,8 +28,9 @@ class MyClient(discord.Client):
         if message.author.id == self.user.id:
             return
 
-        if message.content.startswith('!hello'):
-            await message.reply('Hello!', mention_author=True)
+        if message.content.startswith('!help'):
+            await message.channel.send(content=None, embed=create_help_embed())
+            return
 
         if message.content.startswith('!1d'):
             msg_array =  message.content.split('d')
@@ -33,6 +48,7 @@ class MyClient(discord.Client):
             else:
                 await message.add_reaction('\N{THUMBS DOWN SIGN}')
                 await message.reply("Something went wrong...", mention_author=True)
+            return
         
         if message.content.startswith('!2d'):
             # on recupere l'id du channel dans lequel le message à été envoyé puis le channel lui même
@@ -54,10 +70,12 @@ class MyClient(discord.Client):
                 await message.reply(":8ball: "+str(random.randrange(1,int(chiffres[0]),1))+", :8ball: "+str(random.randrange(1,int(chiffres[1]),1)), mention_author=True)
             else:
                 await message.reply(":8ball: "+str(random.randrange(1,int(chiffre),1))+", :8ball: "+str(random.randrange(1,int(chiffre),1)), mention_author=True)
+            return
 
         if message.content.startswith('!randomChamp'):
             retour = lolChamp.listeChampion[random.randrange(0,len(lolChamp.listeChampion),1)]
             await message.reply("Voici... Votre champion : " + retour.name + " en " + retour.role, mention_author=True)
+            return
         
 
 intents = discord.Intents.default()
