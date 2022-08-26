@@ -3,6 +3,11 @@
 import discord
 import random
 import lolChamp
+from riotwatcher import LolWatcher, ApiError
+
+api_key = 'RGAPI-b0046366-a360-4dd9-b191-54a876fd14b7'
+watcher = LolWatcher(api_key)
+my_region = 'euw'
 
 def create_help_embed():
     embed = discord.Embed(title='**COMMANDS**',
@@ -78,6 +83,15 @@ class MyClient(discord.Client):
             retour = lolChamp.listeChampion[random.randrange(0,len(lolChamp.listeChampion),1)]
             await message.reply("Voici... Votre champion : " + retour.name + " en " + retour.role, mention_author=True)
             return
+
+        if message.content.startsWith('!checkLOL'):
+            me = watcher.summoner.by_name(my_region, 'Tobia')
+            me2 = watcher.summoner.by_name(my_region, 'Bìboun')
+            await message.reply("Tobia : " + me + " Bìboun " + me2, mention_author=True)
+            return
+
+
+        
         
 
 intents = discord.Intents.default()
