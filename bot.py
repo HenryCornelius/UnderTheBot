@@ -96,7 +96,22 @@ class MyClient(discord.Client):
             tobia_ranked = watcher.league.by_summoner(my_region, tobia['id'])
             await message.reply("Tobia : " + tobia_ranked['tier'] + " " + tobia_ranked['rank'] + " - " + str(tobia_ranked['leaguePoints']) + " LP", mention_author=True)
             return
-        
+
+        if message.content.startswith('!checkRank'):
+            msg_input = message.content[1:]
+            if msg_input.count(' ') > 0:
+                argument = msg_input.split(' ')[1]
+                summoner = watcher.summoner.by_name(my_region, argument)
+                if summoner is not None: 
+                    summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
+                    await message.reply(argument + " : " + summoner_rank[0]['tier'] + " " + summoner_rank[0]['rank'] + " - " + summoner_rank[0]['leaguePoints'] + " LP ", mention_author=True)
+                    return
+                else:
+                    await message.reply("Le nom d'invocateur est incorrect", mention_author=True) 
+                    return
+            else:
+                await message.reply("Il manque le nom d'invocateur", mention_author=True)
+                return
         
 
 intents = discord.Intents.default()
