@@ -143,7 +143,7 @@ class MyClient(discord.Client):
                 embed = discord.Embed(title='**'+summoner['name']+'**')
                 url = "https://ddragon.leagueoflegends.com/cdn/" + str(version) + "/img/profileicon/" + str(summoner['profileIconId']) + ".png"
                 await message.reply(url, mention_author=True)
-                embed.set_thumbnail(url)
+                embed.set_thumbnail(url = url)
                 await message.channel.send(content=None, embed=embed)
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
