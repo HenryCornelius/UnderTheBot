@@ -88,7 +88,7 @@ class MyClient(discord.Client):
             biboun = watcher.summoner.by_name(my_region, 'Bìboun')
             biboun_ranked = watcher.league.by_summoner(my_region, biboun['id'])
             print(biboun_ranked)
-            await message.reply("Bìboun : " + biboun_ranked['tier'] + " " + biboun_ranked['rank'] + " - " + str(biboun_ranked['leaguePoints']) + " LP", mention_author=True)
+            await message.reply("Bìboun : " + biboun_ranked[0]['tier'] + " " + biboun_ranked[0]['rank'] + " - " + str(biboun_ranked[0]['leaguePoints']) + " LP", mention_author=True)
             return
 
         if message.content.startswith('!checkTobia'):
