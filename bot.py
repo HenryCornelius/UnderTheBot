@@ -26,6 +26,8 @@ def create_help_embed():
     return embed
 
 class MyClient(discord.Client):
+    def __init__(self):
+        self.voice_states = {}
     async def on_ready(self):
         print(f'Logged in as {self.user} (ID: {self.user.id})')
         print('------')
