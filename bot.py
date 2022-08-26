@@ -140,7 +140,7 @@ class MyClient(discord.Client):
                 summoner = watcher.summoner.by_name(my_region, argument)
                 summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
-                embed = discord.Embed(title='**'+summoner['name']+'**',description="Informations concernant le joueur "+ summoner['name'] +". Cliquez sur le nom d'invocateur ci-dessus afin d'accéder a ses données sur op.gg", url="https://euw.op.gg/summoners/euw/"+summoner['name'],colour=discord.Colour.blue() )
+                embed = discord.Embed(title='**'+summoner['name']+'**',description="Informations concernant le joueur "+ summoner['name'] +". Cliquez sur le nom d'invocateur ci-dessus afin d'accéder à ses données sur op.gg", url="https://euw.op.gg/summoners/euw/"+summoner['name'],colour=discord.Colour.blue() )
                 url = "https://ddragon.leagueoflegends.com/cdn/" + str(version) + "/img/profileicon/" + str(summoner['profileIconId']) + ".png"
                 embed.set_thumbnail(url = url)
                 ranks = {}
@@ -166,6 +166,7 @@ class MyClient(discord.Client):
                     value= ranks['double'],
                     inline=False)
                 await message.channel.send(content=None, embed=embed)
+                await message.add_reaction('\N{WHITE CHECK MARK}')
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
                 return
