@@ -104,7 +104,11 @@ class MyClient(discord.Client):
                 summoner = watcher.summoner.by_name(my_region, argument)
                 if summoner is not None: 
                     summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
-                    await message.reply(argument + " : " + summoner_rank[0]['tier'] + " " + summoner_rank[0]['rank'] + " - " + str(summoner_rank[0]['leaguePoints']) + " LP ", mention_author=True)
+                    print(summoner_rank)
+                    for i in summoner_rank:
+                        if summoner_rank[i]['queueType'] == "RANKED_SOLO_5x5":
+                            rank_solo = summoner_rank[i]
+                    await message.reply(argument + " : " + rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP ", mention_author=True)
                     return
                 else:
                     await message.reply("Le nom d'invocateur est incorrect", mention_author=True) 
