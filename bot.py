@@ -105,7 +105,7 @@ class MyClient(discord.Client):
                 if summoner is not None: 
                     summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
                     print(summoner_rank)
-                    for i in summoner_rank:
+                    for i in range(len(summoner_rank)):
                         if summoner_rank[i]['queueType'] == "RANKED_SOLO_5x5":
                             rank_solo = summoner_rank[i]
                     await message.reply(argument + " : " + rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP ", mention_author=True)
