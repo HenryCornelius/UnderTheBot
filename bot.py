@@ -129,6 +129,7 @@ class MyClient(discord.Client):
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
                 return
+                
         if message.content.startswith('!test'):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
