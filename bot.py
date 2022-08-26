@@ -89,7 +89,7 @@ class MyClient(discord.Client):
             me2 = watcher.summoner.by_name(my_region, 'Bìboun')
             print(me)
             print(me2)
-            await message.reply("Done !" + me2, mention_author=True)
+            await message.reply("Done !", mention_author=True)
             # await message.reply("Tobia : " + me + " Bìboun " + me2, mention_author=True)
             return
 
