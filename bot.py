@@ -20,6 +20,9 @@ def create_help_embed():
     embed.add_field(name='`!randomChamp`',
                     value='Selectionne un champion de manière aléatoire sur son rôle principal.',
                     inline=False)
+    embed.add_field(name='`!checkRank <summoner name> [<type ranked>]`',
+                    value='Vérifie le rang du pseudo entré. Exemples: `!checkRank Tobia` - `!checkRank Tobia TFT`',
+                    inline=False)
     return embed
 
 class MyClient(discord.Client):
@@ -129,7 +132,7 @@ class MyClient(discord.Client):
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
                 return
-                
+
         if message.content.startswith('!test'):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
