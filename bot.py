@@ -140,25 +140,20 @@ class MyClient(discord.Client):
                 summoner = watcher.summoner.by_name(my_region, argument)
                 summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
-                embed = discord.Embed(title='**'+summoner['name']+'**',description="Informations concernant le joueur"+ summoner['name'] +". Cliquez sur le nom d'invocateur ci-dessus afin d'accéder a ses données sur op.gg", url="https://euw.op.gg/summoners/euw/"+summoner['name'],colour=discord.Colour.blue() )
+                embed = discord.Embed(title='**'+summoner['name']+'**',description="Informations concernant le joueur "+ summoner['name'] +". Cliquez sur le nom d'invocateur ci-dessus afin d'accéder a ses données sur op.gg", url="https://euw.op.gg/summoners/euw/"+summoner['name'],colour=discord.Colour.blue() )
                 url = "https://ddragon.leagueoflegends.com/cdn/" + str(version) + "/img/profileicon/" + str(summoner['profileIconId']) + ".png"
                 embed.set_thumbnail(url = url)
-                ranks = {
-                    "solo": "",
-                    "flex": "",
-                    "tft": "",
-                    "double": "",
-                }
+                ranks = {}
                 for i in range(len(summoner_rank)):
                     if summoner_rank[i]['queueType'] == 'RANKED_SOLO_5x5':
                         rank = summoner_rank[i]
-                        ranks['solo'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP ",
+                        ranks['solo'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP "
                     if summoner_rank[i]['queueType'] == 'RANKED_FLEX_SR':
                         rank = summoner_rank[i]
-                        ranks['flex'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP ",
+                        ranks['flex'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP "
                     if summoner_rank[i]['queueType'] == 'RANKED_TFT_DOUBLE_UP':
                         rank = summoner_rank[i]
-                        ranks['double'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP ",
+                        ranks['double'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP "
                     
                     
                 embed.add_field(name='Solo/duo',
