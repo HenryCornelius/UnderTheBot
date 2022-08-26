@@ -1,6 +1,4 @@
 # This example requires the 'message_content' privileged intent to function.
-
-from turtle import title
 import discord
 import random
 import lolChamp
