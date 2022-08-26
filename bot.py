@@ -7,7 +7,7 @@ from riotwatcher import LolWatcher, ApiError
 
 api_key = 'RGAPI-b0046366-a360-4dd9-b191-54a876fd14b7'
 watcher = LolWatcher(api_key)
-my_region = 'euw'
+my_region = 'euw1'
 
 def create_help_embed():
     embed = discord.Embed(title='**COMMANDS**',
