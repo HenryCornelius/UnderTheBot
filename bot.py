@@ -103,12 +103,13 @@ class MyClient(discord.Client):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
                 name = msg_input.split(' ')[1]
+                summoner
                 summoner = watcher.summoner.by_name(my_region, name)
                 if summoner is not None: 
                     summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
                     print(summoner_rank)
                     queueType = "RANKED_SOLO_5x5"
-                    if msg_input.count(' ') < 2:
+                    if msg_input.count(' ') > 1:
                         if msg_input.split(' ')[2] == "SOLO" or msg_input.split(' ')[2] == "Solo" or msg_input.split(' ')[2] == "solo":
                             queueType = "RANKED_SOLO_5x5"
                         else:
