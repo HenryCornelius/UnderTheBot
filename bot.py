@@ -93,7 +93,11 @@ class MyClient(discord.Client):
             # await message.reply("Tobia : " + me + " Bìboun " + me2, mention_author=True)
             return
 
-
+        if message.content.startswith('!checkTobia'):
+            tobia = watcher.summoner.by_name(my_region, 'Tobia')
+            tobia_ranked = watcher.league.by_summoner(my_region, tobia['id'])
+            await message.reply("Tobia : " + tobia_ranked.tier + " " + tobia_ranked.rank + " - " + tobia_ranked.leaguePoints + " LP ", mention_author=True)
+            return
         
         
 
