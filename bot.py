@@ -138,11 +138,10 @@ class MyClient(discord.Client):
             if msg_input.count(' ') > 0:
                 argument = msg_input.split(' ')[1]
                 summoner = watcher.summoner.by_name(my_region, argument)
-                summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
+                #summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
                 embed = discord.Embed(title='**'+summoner['name']+'**')
                 url = "https://ddragon.leagueoflegends.com/cdn/" + str(version) + "/img/profileicon/" + str(summoner['profileIconId']) + ".png"
-                await message.reply(url, mention_author=True)
                 embed.set_thumbnail(url = url)
                 await message.channel.send(content=None, embed=embed)
             else:
