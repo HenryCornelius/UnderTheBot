@@ -103,7 +103,6 @@ class MyClient(discord.Client):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
                 name = msg_input.split(' ')[1]
-                summoner
                 summoner = watcher.summoner.by_name(my_region, name)
                 if summoner is not None: 
                     summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
