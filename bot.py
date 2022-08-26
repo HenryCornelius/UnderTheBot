@@ -140,10 +140,8 @@ class MyClient(discord.Client):
                 summoner = watcher.summoner.by_name(my_region, argument)
                 summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
-                icons = watcher.data_dragon.profile_icons(version)
-                print(icons)
                 embed = discord.Embed(title='**'+summoner['name']+'**')
-                embed.set_image(icons[summoner['profileIconId']])
+                embed.set_image(f"https://ddragon.leagueoflegends.com/cdn/{version}/img/profileicon/{summoner['profileIconId']}.png")
                 await message.channel.send(content=None, embed=embed)
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
