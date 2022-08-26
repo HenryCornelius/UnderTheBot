@@ -1,8 +1,8 @@
 # This example requires the 'message_content' privileged intent to function.
 import discord
+from riotwatcher import LolWatcher, ApiError
 import random
 import lolChamp
-from riotwatcher import LolWatcher, ApiError
 
 api_key = 'RGAPI-b0046366-a360-4dd9-b191-54a876fd14b7'
 watcher = LolWatcher(api_key)
@@ -174,6 +174,22 @@ class MyClient(discord.Client):
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
                 return
+
+        if message.content.startswith('!join'):
+            """Summons the bot to a voice channel.
+            If no channel was specified, it joins your channel.
+            """
+
+            if not discord.VoiceChannel and not message.author.voice:
+                message.reply("Vous n'etes pas dans un salon vocal", mention_author=True)
+
+            destination = discord.VoiceChannel or message.author.voice.channel
+            if self.voice_state.voice:
+                await self.voice_state.voice.move_to(destination)
+                return
+
+            self.voice_state.voice = await destination.connect()
+            return
 
 intents = discord.Intents.default()
 intents.message_content = True
