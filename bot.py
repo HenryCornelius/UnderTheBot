@@ -108,7 +108,7 @@ class MyClient(discord.Client):
                     summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
                     print(summoner_rank)
                     queueType = "RANKED_SOLO_5x5"
-                    if msg_input.count(' ') < 2:
+                    if msg_input.count(' ') > 1:
                         if msg_input.split(' ')[2] == "SOLO" or msg_input.split(' ')[2] == "Solo" or msg_input.split(' ')[2] == "solo":
                             queueType = "RANKED_SOLO_5x5"
                         else:
