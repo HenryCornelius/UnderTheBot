@@ -130,6 +130,8 @@ class MyClient(discord.Client):
                                 rank_solo = summoner_rank[i]
                                 await message.reply(name + " : " + rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP ", mention_author=True)
                                 return
+                            else:
+                                await message.reply("Pas de classement dispo dans cette file !", mention_author=True)
                 else:
                     await message.reply("Le nom d'invocateur est incorrect", mention_author=True) 
                     return
