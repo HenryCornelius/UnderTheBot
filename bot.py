@@ -26,8 +26,7 @@ def create_help_embed():
     return embed
 
 class MyClient(discord.Client):
-    def __init__(self):
-        self.voice_states = {}
+
     async def on_ready(self):
         print(f'Logged in as {self.user} (ID: {self.user.id})')
         print('------')
@@ -178,19 +177,8 @@ class MyClient(discord.Client):
                 return
 
         if message.content.startswith('!join'):
-            """Summons the bot to a voice channel.
-            If no channel was specified, it joins your channel.
-            """
-
-            if not discord.VoiceChannel and not message.author.voice:
-                message.reply("Vous n'etes pas dans un salon vocal", mention_author=True)
-
-            destination = discord.VoiceChannel or message.author.voice.channel
-            if self.voice_state.voice:
-                await self.voice_state.voice.move_to(destination)
-                return
-
-            self.voice_state.voice = await destination.connect()
+            destination = message.author.voice.channel
+            await destination.connect()
             return
 
 intents = discord.Intents.default()
