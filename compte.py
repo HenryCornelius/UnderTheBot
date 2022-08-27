@@ -1,5 +1,5 @@
 class Compte():
-    def __init__(self,discordName, lolName):
+    def __init__(self, lolName, discordName):
         self.lolname = lolName
         self.discordname = discordName
 

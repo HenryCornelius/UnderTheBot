@@ -212,11 +212,14 @@ class MyClient(discord.Client):
         #                                                                                                                  #
         ####################################################################################################################
         if message.content.startswith('!checkMate') or message.content.startswith('!checkmate'):
-            summonername = "Tobia"
+            summonername = ""
             print(message.author.name + " + " + compte.listeMembre[0].discordname)
             for i in range(len(compte.listeMembre)):
                 if message.author.name == compte.listeMembre[i].discordname:
                     summonername = compte.listeMembre[i].lolname
+            if summonername == "": 
+                await message.reply("Le nom d'invocateur n'est pas configuré", mention_author=True) 
+                return
             summoner = watcher.summoner.by_name(my_region, summonername)
             my_matches = watcher.match.matchlist_by_puuid(my_region, summoner['puuid'])
             # fetch last match detail
