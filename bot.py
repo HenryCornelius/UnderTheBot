@@ -212,7 +212,7 @@ class MyClient(discord.Client):
         #                                                                                                                  #
         ####################################################################################################################
         if message.content.startswith('!checkMate') or message.content.startswith('!checkmate'):
-            summonername = ""
+            summonername = "Tobia"
             for i in range(len(compte.listeMembre)):
                 if message.author.name == compte.listeMembre[i].discordname:
                     summonername = compte.listeMembre[i].lolname
