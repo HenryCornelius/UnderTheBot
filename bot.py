@@ -28,6 +28,41 @@ def create_help_embed():
                     inline=False)
     return embed
 
+def create_mates_embed(mates):
+    embed = discord.Embed(title='**MATES**',
+                        description='', colour=discord.Colour.green())
+    embed.add_field(name=mates[0][0],
+                    value=mates[0][1],
+                    inline=False)
+    embed.add_field(name=mates[1][0],
+                    value=mates[1][1],
+                    inline=False)
+    embed.add_field(name=mates[2][0],
+                    value=mates[2][1],
+                    inline=False)
+    embed.add_field(name=mates[3][0],
+                    value=mates[3][1],
+                    inline=False)
+    embed.add_field(name=mates[4][0],
+                    value=mates[4][1],
+                    inline=False)
+    embed.add_field(name=mates[5][0],
+                    value=mates[5][1],
+                    inline=False)
+    embed.add_field(name=mates[6][0],
+                    value=mates[6][1],
+                    inline=False)
+    embed.add_field(name=mates[7][0],
+                    value=mates[7][1],
+                    inline=False)
+    embed.add_field(name=mates[8][0],
+                    value=mates[8][1],
+                    inline=False)
+    embed.add_field(name=mates[9][0],
+                    value=mates[9][1],
+                    inline=False)
+    return embed
+
 class MyClient(discord.Client):
 
     async def on_ready(self):
@@ -186,10 +221,18 @@ class MyClient(discord.Client):
             # fetch last match detail
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail['metadata']['participants'][0])
-            mates = [summoner]
-            for j in range(len(match_detail['metadata']['participants'])):
-                print(watcher.summoner.by_puuid(my_region, match_detail['metadata']['participants'][0]))
-                
+            mates = None
+            for j in match_detail['metadata']['participants']:
+                mates_name = watcher.summoner.by_puuid(my_region, j)['name']
+                mates_rank = watcher.league.by_summoner(my_region, watcher.summoner.by_puuid(my_region, j)['id'])
+                for k in range(len(mates_rank)):
+                    if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
+                        rank_solo = mates_rank[k]
+                        mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
+                mates.append([mates_name, mates_solo_rank])
+            
+            await message.channel.send(content=None, embed=create_mates_embed(mates))
+            return
             
 
 
