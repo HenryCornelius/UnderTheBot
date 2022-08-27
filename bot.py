@@ -188,7 +188,7 @@ class MyClient(discord.Client):
             print(match_detail['metadata']['participants'][0])
             mates = [summoner]
             for j in range(len(match_detail['metadata']['participants'])):
-                mates[j] = watcher.summoner(my_region, match_detail['metadata']['participants'][j])
+                mates[j] = watcher.summoner.by_id(my_region, match_detail['metadata']['participants'][j])
                 print(mates[j]['name'])
             
 
