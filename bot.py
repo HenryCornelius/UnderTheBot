@@ -181,7 +181,7 @@ class MyClient(discord.Client):
                 if message.author.name == compte.listeMembre[i].discordname:
                     summonername = compte.listeMembre[i].lolname
             summoner = watcher.summoner.by_name(my_region, summonername)
-            my_matches = watcher.match.matchlist_by_account(my_region, summoner['accountId'])
+            my_matches = watcher.match.matchlist_by_puuid(my_region, summoner['puuid'])
 
             # fetch last match detail
             last_match = my_matches['matches'][0]
