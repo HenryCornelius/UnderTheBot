@@ -184,8 +184,7 @@ class MyClient(discord.Client):
             my_matches = watcher.match.matchlist_by_puuid(my_region, summoner['puuid'])
             print(my_matches)
             # fetch last match detail
-            last_match = my_matches['matches'][0]
-            match_detail = watcher.match.by_id(my_region, last_match['gameId'])
+            match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail)
 
 
