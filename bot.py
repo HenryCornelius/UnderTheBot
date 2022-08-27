@@ -3,6 +3,7 @@ import discord
 from riotwatcher import LolWatcher, ApiError
 import random
 import lolChamp
+import compte
 import nacl
 
 api_key = 'RGAPI-b0046366-a360-4dd9-b191-54a876fd14b7'
@@ -41,11 +42,21 @@ class MyClient(discord.Client):
         # we do not want the bot to reply to itself
         if message.author.id == self.user.id:
             return
-
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                          Commande !Help                                                          #
+        #                                                                                                                  #
+        ####################################################################################################################
         if message.content.startswith('!help'):
             await message.channel.send(content=None, embed=create_help_embed())
             return
 
+
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                          Commande !1d                                                            #
+        #                                                                                                                  #
+        ####################################################################################################################
         if message.content.startswith('!1d'):
             msg_array =  message.content.split('d')
             input = msg_array[1]
@@ -63,7 +74,13 @@ class MyClient(discord.Client):
                 await message.add_reaction('\N{THUMBS DOWN SIGN}')
                 await message.reply("Something went wrong...", mention_author=True)
             return
-        
+
+
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                          Commande !2d                                                            #
+        #                                                                                                                  #
+        ####################################################################################################################
         if message.content.startswith('!2d'):
             # on recupere l'id du channel dans lequel le message à été envoyé puis le channel lui même
                 # channel_id = message.channel.id
@@ -86,25 +103,37 @@ class MyClient(discord.Client):
                 await message.reply(":8ball: "+str(random.randrange(1,int(chiffre),1))+", :8ball: "+str(random.randrange(1,int(chiffre),1)), mention_author=True)
             return
 
-        if message.content.startswith('!randomChamp'):
+
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                          Commande !randomChamp                                                   #
+        #                                                                                                                  #
+        ####################################################################################################################
+        if message.content.startswith('!randomChamp') or message.content.startswith('!randomchamp'):
             retour = lolChamp.listeChampion[random.randrange(0,len(lolChamp.listeChampion),1)]
             await message.reply("Voici... Votre champion : " + retour.name + " en " + retour.role, mention_author=True)
             return
 
-        if message.content.startswith('!checkBiboun'):
+
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                          Commande !checkBiboun                                                   #
+        #                                                                                                                  #
+        ####################################################################################################################
+        if message.content.startswith('!checkBiboun') or message.content.startswith('!checkbiboun'):
             biboun = watcher.summoner.by_name(my_region, 'Bìboun')
             biboun_ranked = watcher.league.by_summoner(my_region, biboun['id'])
             print(biboun_ranked)
             await message.reply("Bìboun : " + biboun_ranked[0]['tier'] + " " + biboun_ranked[0]['rank'] + " - " + str(biboun_ranked[0]['leaguePoints']) + " LP", mention_author=True)
             return
 
-        if message.content.startswith('!checkTobia'):
-            tobia = watcher.summoner.by_name(my_region, 'Tobia')
-            tobia_ranked = watcher.league.by_summoner(my_region, tobia['id'])
-            await message.reply("Tobia : " + tobia_ranked['tier'] + " " + tobia_ranked['rank'] + " - " + str(tobia_ranked['leaguePoints']) + " LP", mention_author=True)
-            return
 
-        if message.content.startswith('!checkRank'):
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                          Commande !checkRank                                                     #
+        #                                                                                                                  #
+        ####################################################################################################################
+        if message.content.startswith('!checkRank') or message.content.startswith('!checkrank'):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
                 name = msg_input.split(' ')[1]
@@ -139,7 +168,32 @@ class MyClient(discord.Client):
             else:
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
                 return
+        
 
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                          Commande !checkMate                                                     #
+        #                                                                                                                  #
+        ####################################################################################################################
+        if message.content.startswith('!checkMate') or message.content.startswith('!checkmate'):
+            summonername = None
+            for i in range(len(compte.listeMembre)):
+                if message.author.name == compte.listeMembre[i].discordname:
+                    summonername = compte.listeMembre[i].lolname
+            summoner = watcher.summoner.by_name(my_region, summonername)
+            my_matches = watcher.match.matchlist_by_account(my_region, summoner['accountId'])
+
+            # fetch last match detail
+            last_match = my_matches['matches'][0]
+            match_detail = watcher.match.by_id(my_region, last_match['gameId'])
+            print(match_detail)
+
+
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                          Commande !test                                                          #
+        #                                                                                                                  #
+        ####################################################################################################################
         if message.content.startswith('!test'):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
@@ -151,23 +205,19 @@ class MyClient(discord.Client):
                 url = "https://ddragon.leagueoflegends.com/cdn/" + str(version) + "/img/profileicon/" + str(summoner['profileIconId']) + ".png"
                 embed.set_thumbnail(url = url)
                 ranks = {}
+                ranks['solo'] = "Non classé"
+                ranks['flex'] = "Non classé"
+                ranks['double'] = "Non classé"
                 for i in range(len(summoner_rank)):
                     if summoner_rank[i]['queueType'] == 'RANKED_SOLO_5x5':
                         rank = summoner_rank[i]
                         ranks['solo'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP "
-                    else:
-                        ranks['solo'] = "Non classé"
                     if summoner_rank[i]['queueType'] == 'RANKED_FLEX_SR':
                         rank = summoner_rank[i]
                         ranks['flex'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP "
-                    else:
-                        ranks['flex'] = "Non classé"
                     if summoner_rank[i]['queueType'] == 'RANKED_TFT_DOUBLE_UP':
                         rank = summoner_rank[i]
                         ranks['double'] = rank['tier'] + " " + rank['rank'] + " - " + str(rank['leaguePoints']) + " LP "
-                    else:
-                        ranks['double'] = "Non classé"
-                    
                     
                 embed.add_field(name='Solo/duo',
                     value= ranks['solo'],
@@ -185,6 +235,12 @@ class MyClient(discord.Client):
                 await message.reply("Il manque le nom d'invocateur", mention_author=True)
                 return
 
+
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                      Commande !join and !leave                                                   #
+        #                                                                                                                  #
+        ####################################################################################################################
         if message.content.startswith('!join'):
             destination = message.author.voice.channel
             await destination.connect()
