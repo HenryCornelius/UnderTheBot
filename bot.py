@@ -221,7 +221,7 @@ class MyClient(discord.Client):
             # fetch last match detail
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail['metadata']['participants'][0])
-            mates = None
+            mates = []
             for j in match_detail['metadata']['participants']:
                 mates_name = watcher.summoner.by_puuid(my_region, j)['name']
                 mates_rank = watcher.league.by_summoner(my_region, watcher.summoner.by_puuid(my_region, j)['id'])
