@@ -182,7 +182,7 @@ class MyClient(discord.Client):
                     summonername = compte.listeMembre[i].lolname
             summoner = watcher.summoner.by_name(my_region, summonername)
             my_matches = watcher.match.matchlist_by_puuid(my_region, summoner['puuid'])
-
+            print(my_matches)
             # fetch last match detail
             last_match = my_matches['matches'][0]
             match_detail = watcher.match.by_id(my_region, last_match['gameId'])
