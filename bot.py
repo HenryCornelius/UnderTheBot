@@ -186,6 +186,11 @@ class MyClient(discord.Client):
             # fetch last match detail
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail['metadata']['participants'])
+            mates = [summoner]
+            for j in range(len(match_detail['metadata']['participants'])):
+                mates[j] = watcher.summoner(my_region, match_detail['metadata']['participants'][j])
+                print(mates[j]['name'])
+            
 
 
         ####################################################################################################################
