@@ -1,4 +1,5 @@
 # This example requires the 'message_content' privileged intent to function.
+from importlib.metadata import metadata
 import discord
 from riotwatcher import LolWatcher, ApiError
 import random
@@ -182,10 +183,10 @@ class MyClient(discord.Client):
                     summonername = compte.listeMembre[i].lolname
             summoner = watcher.summoner.by_name(my_region, summonername)
             my_matches = watcher.match.matchlist_by_puuid(my_region, summoner['puuid'])
-            print(my_matches)
             # fetch last match detail
             match_detail = watcher.match.by_id(my_region, my_matches[0])
-            print(match_detail)
+            print(match_detail['participants'])
+            print(match_detail['metadata']['participants'])
 
 
         ####################################################################################################################
