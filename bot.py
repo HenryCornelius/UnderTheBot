@@ -224,7 +224,11 @@ class MyClient(discord.Client):
                 if summonername == "": 
                     await message.reply("Le nom d'invocateur n'est pas configuré", mention_author=True) 
                     return
-            summoner = watcher.summoner.by_name(my_region, summonername)
+            try:
+                summoner = watcher.summoner.by_name(my_region, summonername)
+            except ApiError:
+                await message.reply("Le nom d'invocateur n'est pas bon", mention_author=True) 
+                return
             my_matches = watcher.match.matchlist_by_puuid(my_region, summoner['puuid'])
             # fetch last match detail
             match_detail = watcher.match.by_id(my_region, my_matches[0])
