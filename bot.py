@@ -188,8 +188,8 @@ class MyClient(discord.Client):
             print(match_detail['metadata']['participants'][0])
             mates = [summoner]
             for j in range(len(match_detail['metadata']['participants'])):
-                mates[j] = watcher.summoner.by_puuid(my_region, match_detail['metadata']['participants'][j])
-                print(mates[j]['name'])
+                print(watcher.summoner.by_puuid(my_region, match_detail['metadata']['participants'][0]))
+                
             
 
 
