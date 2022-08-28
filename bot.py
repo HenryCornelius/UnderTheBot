@@ -194,7 +194,7 @@ class MyClient(discord.Client):
                     mates_role = j['role']
                 mates_name = str(mate['name']) + " - " + str(mates_role) 
                 mates_champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled']) + "cs"
-                mates_mastery = "Derniere partie de " + str(j['championName']) + " le " + str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)) + "s"
+                mates_mastery = "Derniere partie de " + str(j['championName']) + " le " + str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)) 
                 mates_rank = watcher.league.by_summoner(my_region, mate['id'])
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
