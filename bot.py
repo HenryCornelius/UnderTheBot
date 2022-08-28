@@ -206,13 +206,23 @@ class MyClient(discord.Client):
                         rank_solo = mates_rank[k]
                         mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
                 mates.append([mates_name, mates_solo_rank, mates_champ, mates_mastery])
-            
-            if match_detail['info']['teams'][0]['win']:
-                bluewin = "**WINNERS**  :green_circle:  " + str(blue_golds - red_golds) + ":moneybag:"
-                redwin = "**LOOSERS**  :red_circle:  " + str(red_golds - blue_golds) + ":moneybag:"
+
+            blue_ecart = blue_golds - red_golds
+            red_ecart = red_golds - blue_golds
+            if blue_ecart > 0:
+                blue_ecart = "+"+str(blue_ecart)
             else:
-                bluewin = "**LOOSERS**  :red_circle:  " + str(blue_golds - red_golds) + ":moneybag:"
-                redwin = "**WINNERS**  :green_circle:  " + str(red_golds - blue_golds) + ":moneybag:"
+                blue_ecart = str(blue_ecart)
+            if red_ecart > 0:
+                red_ecart = "+"+str(red_ecart)
+            else:
+                red_ecart = str(red_ecart)
+            if match_detail['info']['teams'][0]['win']:
+                bluewin = "**WINNERS**  :green_circle:  " + str(blue_golds) + ":moneybag: (" + blue_ecart + ")"
+                redwin = "**LOOSERS**  :red_circle:  " + str(red_golds) + ":moneybag: (" + red_ecart + ")"
+            else:
+                bluewin = "**LOOSERS**  :red_circle:  " + str(blue_golds) + ":moneybag: (" + blue_ecart + ")"
+                redwin = "**WINNERS**  :green_circle:  " + str(red_golds) + ":moneybag: (" + red_ecart + ")"
 
             blueDragons = str(match_detail['info']['teams'][0]['objectives']['dragon']['kills'])
             blueBarons = str(match_detail['info']['teams'][0]['objectives']['baron']['kills'])
