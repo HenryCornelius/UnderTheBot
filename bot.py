@@ -29,39 +29,41 @@ def create_help_embed():
     return embed
 
 def create_mates_embed(mates):
-    embed = discord.Embed(title='**MATES**',
-                        description='', colour=discord.Colour.green())
-    embed.add_field(name=mates[0][0],
+    embed1 = discord.Embed(title='**BLUE TEAM**',
+                        description='', colour=discord.Colour.blue())
+    embed1.add_field(name=mates[0][0],
                     value=mates[0][1],
                     inline=False)
-    embed.add_field(name=mates[1][0],
+    embed1.add_field(name=mates[1][0],
                     value=mates[1][1],
                     inline=False)
-    embed.add_field(name=mates[2][0],
+    embed1.add_field(name=mates[2][0],
                     value=mates[2][1],
                     inline=False)
-    embed.add_field(name=mates[3][0],
+    embed1.add_field(name=mates[3][0],
                     value=mates[3][1],
                     inline=False)
-    embed.add_field(name=mates[4][0],
+    embed1.add_field(name=mates[4][0],
                     value=mates[4][1],
                     inline=False)
-    embed.add_field(name=mates[5][0],
+    embed2 = discord.Embed(title='**RED TEAM**',
+                        description='', colour=discord.Colour.red())
+    embed2.add_field(name=mates[5][0],
                     value=mates[5][1],
                     inline=False)
-    embed.add_field(name=mates[6][0],
+    embed2.add_field(name=mates[6][0],
                     value=mates[6][1],
                     inline=False)
-    embed.add_field(name=mates[7][0],
+    embed2.add_field(name=mates[7][0],
                     value=mates[7][1],
                     inline=False)
-    embed.add_field(name=mates[8][0],
+    embed2.add_field(name=mates[8][0],
                     value=mates[8][1],
                     inline=False)
-    embed.add_field(name=mates[9][0],
+    embed2.add_field(name=mates[9][0],
                     value=mates[9][1],
                     inline=False)
-    return embed
+    return embed1, embed2
 
 class MyClient(discord.Client):
 
