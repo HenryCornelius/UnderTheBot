@@ -184,6 +184,7 @@ class MyClient(discord.Client):
             # fetch last match detail
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail)
+            matesArray = []
             mates = Mates
             blue_golds = 0
             red_golds = 0
@@ -210,7 +211,7 @@ class MyClient(discord.Client):
                 mates.damage = str(j['totalDamageDealtToChampions']) + " dmg"
                 mates_vision = str(j['visionScore']) + " vision"
                 mates.gold = str(j['goldEarned']) + " golds - " + mates_vision
-                mates.append([mates])
+                matesArray.append([mates])
 
             blue_ecart = blue_golds - red_golds
             red_ecart = red_golds - blue_golds
