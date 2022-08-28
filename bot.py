@@ -168,7 +168,6 @@ class MyClient(discord.Client):
                 summonername = msg_input.split(' ')[1]
             else:
                 summonername = ""
-                print(message.author.name + " + " + compte.listeMembre[0].discordname)
                 for i in range(len(compte.listeMembre)):
                     if message.author.name == compte.listeMembre[i].discordname:
                         summonername = compte.listeMembre[i].lolname
@@ -190,12 +189,13 @@ class MyClient(discord.Client):
                 mate = watcher.summoner.by_id(my_region, j["summonerId"])
                 mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
                 mate_last_game = datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)
+                date_fr = mate_last_game.day + "-" + mate_last_game.month + "-" + mate_last_game.year + " " + mate_last_game.hour + ":" + mate_last_game.minute
                 mates_role = j['lane']
                 if j['lane'] == "BOTTOM": 
                     mates_role = j['role']
                 mates_name = str(mate['name']) + " - " + str(mates_role) 
                 mates_champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled']) + "cs"
-                mates_mastery = "Derniere partie de " + str(j['championName']) + " le " + str(mate_last_game.day) + "-" + str(mate_last_game.month) + "-" + str(mate_last_game.year) + " " + + str(mate_last_game.hour) + ":" + str(mate_last_game.minute)
+                mates_mastery = "Derniere partie de " + str(j['championName']) + " le " + date_fr
                 mates_rank = watcher.league.by_summoner(my_region, mate['id'])
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
