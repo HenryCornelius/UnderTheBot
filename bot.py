@@ -263,13 +263,13 @@ class MyClient(discord.Client):
                 bluewin = "**LOOSERS**  :red_circle:"
                 redwin = "**WINNERS**  :green_circle:"
 
-            blueDragons = match_detail['info']['teams'][0]['objectives']['dragon']['kills']
-            blueBarons = match_detail['info']['teams'][0]['objectives']['baron']['kills']
-            blueHeralds = match_detail['info']['teams'][0]['objectives']['riftHerald']['kills']
+            blueDragons = str(match_detail['info']['teams'][0]['objectives']['dragon']['kills'])
+            blueBarons = str(match_detail['info']['teams'][0]['objectives']['baron']['kills'])
+            blueHeralds =str(match_detail['info']['teams'][0]['objectives']['riftHerald']['kills'])
             blueObj = [blueDragons, blueBarons, blueHeralds]
-            redDragons = match_detail['info']['teams'][1]['objectives']['dragon']['kills']
-            redBarons = match_detail['info']['teams'][1]['objectives']['baron']['kills']
-            redHeralds = match_detail['info']['teams'][1]['objectives']['riftHerald']['kills']
+            redDragons = str(match_detail['info']['teams'][1]['objectives']['dragon']['kills'])
+            redBarons = str(match_detail['info']['teams'][1]['objectives']['baron']['kills'])
+            redHeralds = str(match_detail['info']['teams'][1]['objectives']['riftHerald']['kills'])
             redObj = [redDragons, redBarons, redHeralds]
             
             await message.channel.send(content=None, embed=create_mates_embed1(mates, bluewin, blueObj))
