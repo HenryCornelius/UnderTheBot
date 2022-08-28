@@ -184,14 +184,16 @@ class MyClient(discord.Client):
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail)
             mates = []
-            mates_gold = 0
+            blue_golds = 0
+            red_golds = 0
             for j in match_detail['info']['participants']:
                 mate = watcher.summoner.by_id(my_region, j["summonerId"])
                 mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
                 # mate_last_game = datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)
-                mates_gold = mates_gold + j['goldEarned']
-                print(j['teamId'])
-                print(mates_gold)
+                if j['teamId'] == "100":
+                    blue_golds = blue_golds + j['goldEarned']
+                else:
+                    red_golds = red_golds + j['goldEarned']
                 mates_role = j['lane']
                 if j['lane'] == "BOTTOM": 
                     mates_role = j['role']
@@ -206,11 +208,11 @@ class MyClient(discord.Client):
                 mates.append([mates_name, mates_solo_rank, mates_champ, mates_mastery])
             
             if match_detail['info']['teams'][0]['win']:
-                bluewin = "**WINNERS**  :green_circle:"
-                redwin = "**LOOSERS**  :red_circle:"
+                bluewin = "**WINNERS**  :green_circle:  " + blue_golds + ":moneybag:"
+                redwin = "**LOOSERS**  :red_circle:  " + red_golds + ":moneybag:"
             else:
-                bluewin = "**LOOSERS**  :red_circle:"
-                redwin = "**WINNERS**  :green_circle:"
+                bluewin = "**LOOSERS**  :red_circle:  " + blue_golds + ":moneybag:"
+                redwin = "**WINNERS**  :green_circle:  " + red_golds + ":moneybag:"
 
             blueDragons = str(match_detail['info']['teams'][0]['objectives']['dragon']['kills'])
             blueBarons = str(match_detail['info']['teams'][0]['objectives']['baron']['kills'])
