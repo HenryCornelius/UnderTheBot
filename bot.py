@@ -29,7 +29,7 @@ def create_help_embed():
                     inline=False)
     return embed
 
-def create_mates_embed1(mates, bluewin):
+def create_mates_embed1(mates, bluewin, blueObj):
     embed1 = discord.Embed(title=bluewin,
                         description='', colour=discord.Colour.blue())
     embed1.add_field(name=mates[0][0],
@@ -47,8 +47,11 @@ def create_mates_embed1(mates, bluewin):
     embed1.add_field(name=mates[4][0],
                     value=mates[4][1],
                     inline=False)
+    embed1.add_field(name="Objectifs",
+                    value=blueObj[0]+" Drake / "+blueObj[1]+" Nash / "+blueObj[2]+" Herald",
+                    inline=False)
     return embed1
-def create_mates_embed2(mates, redwin):
+def create_mates_embed2(mates, redwin, redObj):
     embed2 = discord.Embed(title=redwin,
                         description='', colour=discord.Colour.red())
     embed2.add_field(name=mates[5][0],
@@ -66,6 +69,9 @@ def create_mates_embed2(mates, redwin):
     embed2.add_field(name=mates[9][0],
                     value=mates[9][1],
                     inline=False)
+    embed2.add_field(name="Objectifs",
+                    value=redObj[0]+" Drake / "+redObj[1]+" Nash / "+redObj[2]+" Herald",
+                    inline=True)
     return embed2
 
 class MyClient(discord.Client):
@@ -251,15 +257,24 @@ class MyClient(discord.Client):
                 count= count + 1
             
             if match_detail['info']['teams'][0]['win']:
-                bluewin = "**WINNERS** :green_circle:"
-                redwin = "**LOOSERS** :red_circle:"
+                bluewin = "**WINNERS**  :green_circle:"
+                redwin = "**LOOSERS**  :red_circle:"
             else:
-                bluewin = "**LOOSERS** :red_circle:"
-                redwin = "**WINNERS** :green_circle:"
+                bluewin = "**LOOSERS**  :red_circle:"
+                redwin = "**WINNERS**  :green_circle:"
+
+            blueDragons = match_detail['info']['teams'][0]['objectives']['dragon']['kills']
+            blueBarons = match_detail['info']['teams'][0]['objectives']['baron']['kills']
+            blueHeralds = match_detail['info']['teams'][0]['objectives']['riftHerald']['kills']
+            blueObj = [blueDragons, blueBarons, blueHeralds]
+            redDragons = match_detail['info']['teams'][1]['objectives']['dragon']['kills']
+            redBarons = match_detail['info']['teams'][1]['objectives']['baron']['kills']
+            redHeralds = match_detail['info']['teams'][1]['objectives']['riftHerald']['kills']
+            redObj = [redDragons, redBarons, redHeralds]
             
-            await message.channel.send(content=None, embed=create_mates_embed1(mates, bluewin))
+            await message.channel.send(content=None, embed=create_mates_embed1(mates, bluewin, blueObj))
             
-            await message.channel.send(content=None, embed=create_mates_embed2(mates, redwin))
+            await message.channel.send(content=None, embed=create_mates_embed2(mates, redwin, redObj))
             return
             
 
