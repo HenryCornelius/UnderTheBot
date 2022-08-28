@@ -255,16 +255,15 @@ class MyClient(discord.Client):
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail)
             mates = []
-            count = 0
-            for j in match_detail['metadata']['participants']:
-                mates_name = str(watcher.summoner.by_puuid(my_region, j)['name']) + " - " + str(match_detail['info']['participants'][count]['championName'])
-                mates_rank = watcher.league.by_summoner(my_region, watcher.summoner.by_puuid(my_region, j)['id'])
+            for j in match_detail['info']['participants']:
+                mate = watcher.summoner.by_id(my_region, j["summonerid"])
+                mates_name = str(mate['name']) + " - " + str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['neutralMinionsKilled'] + "cs")
+                mates_rank = watcher.league.by_summoner(my_region, mate['id'])
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
                         rank_solo = mates_rank[k]
                         mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
                 mates.append([mates_name, mates_solo_rank])
-                count= count + 1
             
             if match_detail['info']['teams'][0]['win']:
                 bluewin = "**WINNERS**  :green_circle:"
