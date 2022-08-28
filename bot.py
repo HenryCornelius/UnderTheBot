@@ -211,7 +211,7 @@ class MyClient(discord.Client):
                 mates_vision = str(j['visionScore']) + " vision"
                 mates_damage = str(j['totalDamageDealtToChampions']) + " dmg - " + mates_vision
                 mates_gold = str(j['goldEarned']) + " golds"
-                mates = Mates(mates_name,mates_champ,mates_mastery,mates_solo_rank,mates_damage,mates_gold)
+                mates = Mates(mates_name,mates_solo_rank,mates_champ,mates_mastery,mates_damage,mates_gold)
                 matesArray.append(mates)
 
             blue_ecart = blue_golds - red_golds
