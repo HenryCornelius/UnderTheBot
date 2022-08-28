@@ -195,7 +195,7 @@ class MyClient(discord.Client):
                 else:
                     red_golds = red_golds + j['goldEarned']
                 mates_role = j['lane']
-                if j['lane'] == "BOTTOM": 
+                if j['lane'] == "BOTTOM" or j['lane'] == "NONE": 
                     mates_role = j['role']
                 mates_name = str(mate['name']) + " - " + str(mates_role) 
                 mates_champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled'] + j['neutralMinionsKilled']) + "cs"
