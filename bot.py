@@ -256,7 +256,7 @@ class MyClient(discord.Client):
             print(match_detail)
             mates = []
             for j in match_detail['info']['participants']:
-                mate = watcher.summoner.by_id(my_region, j["summonerid"])
+                mate = watcher.summoner.by_id(my_region, j["summonerId"])
                 mates_name = str(mate['name']) + " - " + str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['neutralMinionsKilled'] + "cs")
                 mates_rank = watcher.league.by_summoner(my_region, mate['id'])
                 for k in range(len(mates_rank)):
