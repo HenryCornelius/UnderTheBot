@@ -212,7 +212,7 @@ class MyClient(discord.Client):
                 mates_vision = str(j['visionScore']) + " vision"
                 mates_gold = str(j['goldEarned']) + " golds - " + mates_vision
                 mates = Mates(mates_name,mates_champ,mates_mastery,mates_solo_rank,mates_damage,mates_gold)
-                matesArray.append([mates])
+                matesArray.append(mates)
 
             blue_ecart = blue_golds - red_golds
             red_ecart = red_golds - blue_golds
