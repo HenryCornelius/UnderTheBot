@@ -29,8 +29,8 @@ def create_help_embed():
                     inline=False)
     return embed
 
-def create_mates_embed1(mates):
-    embed1 = discord.Embed(title='**BLUE TEAM**',
+def create_mates_embed1(mates, bluewin):
+    embed1 = discord.Embed(title='**'+bluewin+'**',
                         description='', colour=discord.Colour.blue())
     embed1.add_field(name=mates[0][0],
                     value=mates[0][1],
@@ -48,8 +48,8 @@ def create_mates_embed1(mates):
                     value=mates[4][1],
                     inline=False)
     return embed1
-def create_mates_embed2(mates):
-    embed2 = discord.Embed(title='**RED TEAM**',
+def create_mates_embed2(mates, redwin):
+    embed2 = discord.Embed(title='**'+redwin+'**',
                         description='', colour=discord.Colour.red())
     embed2.add_field(name=mates[5][0],
                     value=mates[5][1],
@@ -251,34 +251,15 @@ class MyClient(discord.Client):
                 count= count + 1
             
             if match_detail['info']['teams'][0]['win']:
-                bluewin = True
-                redwin = False
+                bluewin = "WINNERS"
+                redwin = "LOOSERS"
             else:
-                bluewin = False
-                redwin = True
+                bluewin = "LOOSERS"
+                redwin = "WINNERS"
             
-            await message.channel.send(content=None, embed=create_mates_embed1(mates))
-            if bluewin:
-                await message.add_reaction("🇼")
-                await message.add_reaction("i")
-                await message.add_reaction("n")
-            else:
-                await message.add_reaction("l")
-                await message.add_reaction("o")
-                await message.add_reaction("o")
-                await message.add_reaction("s")
-                await message.add_reaction("e")
-            await message.channel.send(content=None, embed=create_mates_embed2(mates))
-            if redwin:
-                await message.add_reaction("🇼")
-                await message.add_reaction("i")
-                await message.add_reaction("n")
-            else:
-                await message.add_reaction("l")
-                await message.add_reaction("o")
-                await message.add_reaction("o")
-                await message.add_reaction("s")
-                await message.add_reaction("e")
+            await message.channel.send(content=None, embed=create_mates_embed1(mates, bluewin))
+            
+            await message.channel.send(content=None, embed=create_mates_embed2(mates, redwin))
             return
             
 
