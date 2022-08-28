@@ -259,26 +259,26 @@ class MyClient(discord.Client):
             
             await message.channel.send(content=None, embed=create_mates_embed1(mates))
             if bluewin:
-                await message.add_reaction('\N{REGIONAL INDICATOR W}')
-                await message.add_reaction('\N{REGIONAL INDICATOR I}')
-                await message.add_reaction('\N{REGIONAL INDICATOR N}')
+                await message.add_reaction("🇼")
+                await message.add_reaction("i")
+                await message.add_reaction("n")
             else:
-                await message.add_reaction('\N{REGIONAL INDICATOR L}')
-                await message.add_reaction('\N{REGIONAL INDICATOR O}')
-                await message.add_reaction('\N{REGIONAL INDICATOR O}')
-                await message.add_reaction('\N{REGIONAL INDICATOR S}')
-                await message.add_reaction('\N{REGIONAL INDICATOR E}')
+                await message.add_reaction("l")
+                await message.add_reaction("o")
+                await message.add_reaction("o")
+                await message.add_reaction("s")
+                await message.add_reaction("e")
             await message.channel.send(content=None, embed=create_mates_embed2(mates))
             if redwin:
-                await message.add_reaction('\N{REGIONAL INDICATOR W}')
-                await message.add_reaction('\N{REGIONAL INDICATOR I}')
-                await message.add_reaction('\N{REGIONAL INDICATOR N}')
+                await message.add_reaction("🇼")
+                await message.add_reaction("i")
+                await message.add_reaction("n")
             else:
-                await message.add_reaction('\N{REGIONAL INDICATOR L}')
-                await message.add_reaction('\N{REGIONAL INDICATOR O}')
-                await message.add_reaction('\N{REGIONAL INDICATOR O}')
-                await message.add_reaction('\N{REGIONAL INDICATOR S}')
-                await message.add_reaction('\N{REGIONAL INDICATOR E}')
+                await message.add_reaction("l")
+                await message.add_reaction("o")
+                await message.add_reaction("o")
+                await message.add_reaction("s")
+                await message.add_reaction("e")
             return
             
 
