@@ -269,7 +269,11 @@ class MyClient(discord.Client):
             except ApiError:
                 await message.reply("Le nom d'invocateur n'est pas bon", mention_author=True) 
                 return
-            live_match = watcher.spectator.by_summoner(my_region, summoner['id'])
+            try:
+                live_match = watcher.spectator.by_summoner(my_region, summoner['id'])
+            except ApiError:
+                await message.reply("Pas en game actuellement", mention_author=True) 
+                return
             live_game_lentgh = live_match['gameLength']
             
             mates_array = []
