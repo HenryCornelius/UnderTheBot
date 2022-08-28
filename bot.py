@@ -240,9 +240,9 @@ class MyClient(discord.Client):
             redHeralds = str(match_detail['info']['teams'][1]['objectives']['riftHerald']['kills'])
             redObj = [redDragons, redBarons, redHeralds]
             
-            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(mates, bluewin, blueObj))
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, bluewin, blueObj))
             
-            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(mates, redwin, redObj))
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(matesArray, redwin, redObj))
             return
             
 
