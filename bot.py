@@ -238,14 +238,16 @@ class MyClient(discord.Client):
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail)
             mates = []
+            count = 0
             for j in match_detail['metadata']['participants']:
-                mates_name = watcher.summoner.by_puuid(my_region, j)['name']
+                mates_name = str(watcher.summoner.by_puuid(my_region, j)['name']) + " - " + str(match_detail['info']['participants'][count]['championName'])
                 mates_rank = watcher.league.by_summoner(my_region, watcher.summoner.by_puuid(my_region, j)['id'])
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
                         rank_solo = mates_rank[k]
                         mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
                 mates.append([mates_name, mates_solo_rank])
+            
             
             await message.channel.send(content=None, embed=create_mates_embed1(mates))
             await message.channel.send(content=None, embed=create_mates_embed2(mates))
