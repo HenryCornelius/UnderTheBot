@@ -63,6 +63,9 @@ def create_mates_embed1(mates, bluewin, blueObj):
     embed1.add_field(name=mates[4][2],
                     value="test",
                     inline=True)
+    embed1.add_field(name= '\u200b',
+			        value= '\u200b',
+			        inline= True,)
     embed1.set_footer(text=blueObj[0]+" Drake / "+blueObj[1]+" Nash / "+blueObj[2]+" Herald")
     return embed1
 def create_mates_embed2(mates, redwin, redObj):
@@ -111,5 +114,8 @@ def create_mates_embed2(mates, redwin, redObj):
     embed2.add_field(name=mates[9][2],
                     value="test",
                     inline=True)
+    embed2.add_field(name= '\u200b',
+			        value= '\u200b',
+			        inline= True,)
     embed2.set_footer(text=redObj[0]+" Drake / "+redObj[1]+" Nash / "+redObj[2]+" Herald")
     return embed2
