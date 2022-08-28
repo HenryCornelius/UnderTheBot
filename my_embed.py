@@ -63,7 +63,7 @@ def create_mates_embed2(mates, redwin, redObj):
                     inline=True)
     embed2.add_field(name=mates[6][0],
                     value=mates[6][1],
-                    inline=True)
+                    inline=False)
     embed2.add_field(name=mates[6][2],
                     value="test",
                     inline=True)
