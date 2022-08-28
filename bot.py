@@ -191,6 +191,7 @@ class MyClient(discord.Client):
                 # mate_last_game = datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)
                 mates_gold = mates_gold + j['goldEarned']
                 print(j['teamId'])
+                print(mates_gold)
                 mates_role = j['lane']
                 if j['lane'] == "BOTTOM": 
                     mates_role = j['role']
