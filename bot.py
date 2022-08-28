@@ -34,7 +34,8 @@ class MyClient(discord.Client):
         #                                                                                                                  #
         ####################################################################################################################
         if message.content.startswith('!help'):
-            await message.channel.send(content=None, embed=embed.create_help_embed())
+            embed = embed.create_help_embed()
+            await message.channel.send(content=None, embed=embed)
             return
 
 
@@ -211,9 +212,12 @@ class MyClient(discord.Client):
             redHeralds = str(match_detail['info']['teams'][1]['objectives']['riftHerald']['kills'])
             redObj = [redDragons, redBarons, redHeralds]
             
-            await message.channel.send(content=None, embed=embed.create_mates_embed1(mates, bluewin, blueObj))
+            embed1 = embed.create_mates_embed1(mates, bluewin, blueObj)
+            embed2 = embed.create_mates_embed2(mates, redwin, redObj)
+
+            await message.channel.send(content=None, embed=embed1)
             
-            await message.channel.send(content=None, embed=embed.create_mates_embed2(mates, redwin, redObj))
+            await message.channel.send(content=None, embed=embed2)
             return
             
 

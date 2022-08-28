@@ -1,3 +1,5 @@
+import discord
+
 def create_help_embed():
     embed = discord.Embed(title='**COMMANDS**',
                         description='', colour=discord.Colour.green())
