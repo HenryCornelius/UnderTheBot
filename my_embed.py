@@ -25,7 +25,7 @@ def create_mates_embed1(matesArray, bluewin, blueObj):
                     value=matesArray[i].solo_rank,
                     inline=True)
         embed1.add_field(name=matesArray[i].champ,
-                    value=matesArray[i].champ_mastery,
+                    value=matesArray[i].mastery,
                     inline=True)
         embed1.add_field(name=matesArray[i].gold,
 	    		    value=matesArray[i].damage,
@@ -40,7 +40,7 @@ def create_mates_embed2(matesArray, redwin, redObj):
                     value=matesArray[i+5].solo_rank,
                     inline=True)
         embed2.add_field(name=matesArray[i+5].champ,
-                    value=matesArray[i+5].champ_mastery,
+                    value=matesArray[i+5].mastery,
                     inline=True)
         embed2.add_field(name=matesArray[i+5].gold,
 	    		    value=matesArray[i+5].damage,
