@@ -185,7 +185,7 @@ class MyClient(discord.Client):
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail)
             matesArray = []
-            mates = Mates
+            
             blue_golds = 0
             red_golds = 0
             for j in match_detail['info']['participants']:
@@ -199,18 +199,19 @@ class MyClient(discord.Client):
                 mates_role = j['lane']
                 if j['lane'] == "BOTTOM" or j['lane'] == "NONE": 
                     mates_role = j['role']
-                mates.name = str(mate['name']) + " - " + str(mates_role) 
-                mates.champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled'] + j['neutralMinionsKilled']) + "cs"
-                mates.mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + ", " + str(mates_champ_mastery['championPoints'])  + " points"
+                mates_name = str(mate['name']) + " - " + str(mates_role) 
+                mates_champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled'] + j['neutralMinionsKilled']) + "cs"
+                mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + ", " + str(mates_champ_mastery['championPoints'])  + " points"
                 mates_rank = watcher.league.by_summoner(my_region, mate['id'])
-                mates.solo_rank = "Non classé(e)"
+                mates_solo_rank = "Non classé(e)"
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
                         rank_solo = mates_rank[k]
-                        mates.solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
-                mates.damage = str(j['totalDamageDealtToChampions']) + " dmg"
+                        mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
+                mates_damage = str(j['totalDamageDealtToChampions']) + " dmg"
                 mates_vision = str(j['visionScore']) + " vision"
-                mates.gold = str(j['goldEarned']) + " golds - " + mates_vision
+                mates_gold = str(j['goldEarned']) + " golds - " + mates_vision
+                mates = Mates(mates_name,mates_champ,mates_mastery,mates_solo_rank,mates_damage,mates_gold)
                 matesArray.append([mates])
 
             blue_ecart = blue_golds - red_golds
