@@ -163,7 +163,7 @@ class MyClient(discord.Client):
         #                                          Commande !checkMate                                                     #
         #                                                                                                                  #
         ####################################################################################################################
-        if message.content.startswith('!checkMate') or message.content.startswith('!checkmate'):
+        if message.content.startswith('!checkLast') or message.content.startswith('!checklast'):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
                 summonername = msg_input.split(' ')[1]
@@ -189,7 +189,6 @@ class MyClient(discord.Client):
             blue_golds = 0
             red_golds = 0
             for j in match_detail['info']['participants']:
-                mate = watcher.summoner.by_id(my_region, j["summonerId"])
                 mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
                 # mate_last_game = datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)
                 if j['teamId'] == 100:
@@ -199,10 +198,10 @@ class MyClient(discord.Client):
                 mates_role = j['lane']
                 if j['lane'] == "BOTTOM" or j['lane'] == "NONE": 
                     mates_role = j['role']
-                mates_name = str(mate['name']) + " - " + str(mates_role) 
+                mates_name = str(j['summonerName']) + " - " + str(mates_role) 
                 mates_champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled'] + j['neutralMinionsKilled']) + "cs"
                 mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + ", " + str(mates_champ_mastery['championPoints'])  + " points"
-                mates_rank = watcher.league.by_summoner(my_region, mate['id'])
+                mates_rank = watcher.league.by_summoner(my_region, j['summonerId'])
                 mates_solo_rank = "Non classé(e)"
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
@@ -239,12 +238,65 @@ class MyClient(discord.Client):
             redBarons = str(match_detail['info']['teams'][1]['objectives']['baron']['kills'])
             redHeralds = str(match_detail['info']['teams'][1]['objectives']['riftHerald']['kills'])
             redObj = [redDragons, redBarons, redHeralds]
+            desc1 = redObj[0]+" Drake / "+redObj[1]+" Nash / "+redObj[2]+" Herald"
+            desc2 = blueObj[0]+" Drake / "+blueObj[1]+" Nash / "+blueObj[2]+" Herald"
             
-            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, bluewin, blueObj))
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, bluewin, desc1))
             
-            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(matesArray, redwin, redObj))
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(matesArray, redwin, desc2))
             return
             
+        ####################################################################################################################
+        #                                                                                                                  #
+        #                                          Commande !checkMate                                                     #
+        #                                                                                                                  #
+        ####################################################################################################################
+
+        if message.content.startswith('!checkMate') or message.content.startswith('!checkmate'):
+            msg_input = message.content[1:]
+            if msg_input.count(' ') > 0:
+                summonername = msg_input.split(' ')[1]
+            else:
+                summonername = ""
+                for i in range(len(compte.listeMembre)):
+                    if message.author.name == compte.listeMembre[i].discordname:
+                        summonername = compte.listeMembre[i].lolname
+                if summonername == "": 
+                    await message.reply("Le nom d'invocateur n'est pas configuré", mention_author=True) 
+                    return
+            try:
+                summoner = watcher.summoner.by_name(my_region, summonername)
+            except ApiError:
+                await message.reply("Le nom d'invocateur n'est pas bon", mention_author=True) 
+                return
+            live_match = watcher.spectator.by_summoner(my_region, summoner['id'])
+            live_game_lentgh = live_match['gameLength']
+            
+            mates_array = []
+
+            for j in live_match['participants']:
+                mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
+                mate_last_game = str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000))
+                mates_name = str(j['summonerName'])
+                mates_champ = str(j['championName'])
+                mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + " - last game : " + mate_last_game
+                mates_solo_rank = "Non classé(e)"
+                for k in range(len(mates_rank)):
+                    if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
+                        rank_solo = mates_rank[k]
+                        mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
+
+                live_mate = Mates(mates_name, mates_solo_rank, mates_champ, mates_mastery, live_game_lentgh, " ")
+                mates_array.append(live_mate)
+            
+            live_desc = live_match['gameType']
+
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, "BLUE TEAM", live_desc))
+            
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(matesArray, "RED TEAM", live_desc))
+            return
+
+
 
 
         ####################################################################################################################

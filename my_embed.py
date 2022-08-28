@@ -17,32 +17,33 @@ def create_help_embed():
                     inline=False)
     return embed
 
-def create_mates_embed1(matesArray, bluewin, blueObj):
-    embed1 = discord.Embed(title=bluewin,
-                        description=blueObj[0]+" Drake / "+blueObj[1]+" Nash / "+blueObj[2]+" Herald", colour=discord.Colour.blue())
+    
+def create_mates_embed1(matesArray, live_title, desc):
+    embed1 = discord.Embed(title=live_title,
+                        description=desc, colour=discord.Colour.blue())
     for i in range(5):
-        embed1.add_field(name=matesArray[i].name,
-                    value=matesArray[i].solo_rank,
+        embed1.add_field(name=matesArray[i].titleleft,
+                    value=matesArray[i].descleft,
                     inline=True)
-        embed1.add_field(name=matesArray[i].champ,
-                    value=matesArray[i].mastery,
+        embed1.add_field(name=matesArray[i].titlemid,
+                    value=matesArray[i].descmid,
                     inline=True)
-        embed1.add_field(name=matesArray[i].gold,
-	    		    value=matesArray[i].damage,
+        embed1.add_field(name=matesArray[i].titleright,
+	    		    value=matesArray[i].descright,
 	    		    inline= True)
     return embed1
-def create_mates_embed2(matesArray, redwin, redObj):
-    embed2 = discord.Embed(title=redwin,
-                        description=redObj[0]+" Drake / "+redObj[1]+" Nash / "+redObj[2]+" Herald", colour=discord.Colour.red())
+def create_mates_embed2(matesArray, live_title, desc):
+    embed2 = discord.Embed(title=live_title,
+                        description=desc, colour=discord.Colour.red())
     
     for i in range(5):
-        embed2.add_field(name=matesArray[i+5].name,
-                    value=matesArray[i+5].solo_rank,
+        embed2.add_field(name=matesArray[i+5].titleleft,
+                    value=matesArray[i+5].descleft,
                     inline=True)
-        embed2.add_field(name=matesArray[i+5].champ,
-                    value=matesArray[i+5].mastery,
+        embed2.add_field(name=matesArray[i+5].titlemid,
+                    value=matesArray[i+5].descmid,
                     inline=True)
-        embed2.add_field(name=matesArray[i+5].gold,
-	    		    value=matesArray[i+5].damage,
+        embed2.add_field(name=matesArray[i+5].titleright,
+	    		    value=matesArray[i+5].descright,
 	    		    inline= True)
     return embed2
