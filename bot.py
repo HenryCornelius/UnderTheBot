@@ -199,7 +199,7 @@ class MyClient(discord.Client):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
                         rank_solo = mates_rank[k]
                         mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
-                mates.append([mates_name, mates_solo_rank, mates_champ])
+                mates.append([mates_name, mates_solo_rank, mates_champ, mates_mastery])
             
             if match_detail['info']['teams'][0]['win']:
                 bluewin = "**WINNERS**  :green_circle:"
