@@ -1,4 +1,5 @@
 # This example requires the 'message_content' privileged intent to function.
+from distutils.log import info
 from importlib.metadata import metadata
 import discord
 from riotwatcher import LolWatcher, ApiError
@@ -249,9 +250,35 @@ class MyClient(discord.Client):
                 mates.append([mates_name, mates_solo_rank])
                 count= count + 1
             
+            if match_detail['info']['teams'][0]['win']:
+                bluewin = True
+                redwin = False
+            else:
+                bluewin = False
+                redwin = True
             
             await message.channel.send(content=None, embed=create_mates_embed1(mates))
+            if bluewin:
+                await message.add_reaction('\N{REGIONAL INDICATOR W}')
+                await message.add_reaction('\N{REGIONAL INDICATOR I}')
+                await message.add_reaction('\N{REGIONAL INDICATOR N}')
+            else:
+                await message.add_reaction('\N{REGIONAL INDICATOR L}')
+                await message.add_reaction('\N{REGIONAL INDICATOR O}')
+                await message.add_reaction('\N{REGIONAL INDICATOR O}')
+                await message.add_reaction('\N{REGIONAL INDICATOR S}')
+                await message.add_reaction('\N{REGIONAL INDICATOR E}')
             await message.channel.send(content=None, embed=create_mates_embed2(mates))
+            if redwin:
+                await message.add_reaction('\N{REGIONAL INDICATOR W}')
+                await message.add_reaction('\N{REGIONAL INDICATOR I}')
+                await message.add_reaction('\N{REGIONAL INDICATOR N}')
+            else:
+                await message.add_reaction('\N{REGIONAL INDICATOR L}')
+                await message.add_reaction('\N{REGIONAL INDICATOR O}')
+                await message.add_reaction('\N{REGIONAL INDICATOR O}')
+                await message.add_reaction('\N{REGIONAL INDICATOR S}')
+                await message.add_reaction('\N{REGIONAL INDICATOR E}')
             return
             
 
