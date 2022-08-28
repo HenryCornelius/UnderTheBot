@@ -190,7 +190,7 @@ class MyClient(discord.Client):
                 mate = watcher.summoner.by_id(my_region, j["summonerId"])
                 mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
                 # mate_last_game = datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)
-                if j['teamId'] == "100":
+                if j['teamId'] == 100:
                     blue_golds = blue_golds + j['goldEarned']
                 else:
                     red_golds = red_golds + j['goldEarned']
