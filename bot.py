@@ -282,6 +282,7 @@ class MyClient(discord.Client):
                 print(watcher.data_dragon.champions(version))
                 mates_champ = str(j['championId'])
                 mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + " - last game : " + mate_last_game
+                mates_rank = watcher.league.by_summoner(my_region, j['summonerId'])
                 mates_solo_rank = "Non classé(e)"
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
