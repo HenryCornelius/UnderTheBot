@@ -7,7 +7,7 @@ import lolChamp
 import compte
 import nacl
 
-api_key = 'RGAPI-b0046366-a360-4dd9-b191-54a876fd14b7'
+api_key = 'RGAPI-84d70ce7-80c8-44b7-b822-209762bc03ef'
 watcher = LolWatcher(api_key)
 my_region = 'euw1'
 
