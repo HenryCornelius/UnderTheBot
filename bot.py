@@ -294,9 +294,9 @@ class MyClient(discord.Client):
             
             live_desc = live_match['gameType']
 
-            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, "BLUE TEAM", live_desc))
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(mates_array, "BLUE TEAM", live_desc))
             
-            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(matesArray, "RED TEAM", live_desc))
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(mates_array, "RED TEAM", live_desc))
             return
 
 
