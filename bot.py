@@ -160,7 +160,7 @@ class MyClient(discord.Client):
 
         ####################################################################################################################
         #                                                                                                                  #
-        #                                          Commande !checkMate                                                     #
+        #                                          Commande !checkLast                                                     #
         #                                                                                                                  #
         ####################################################################################################################
         if message.content.startswith('!checkLast') or message.content.startswith('!checklast'):
@@ -278,7 +278,9 @@ class MyClient(discord.Client):
                 mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
                 mate_last_game = str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000))
                 mates_name = str(j['summonerName'])
-                mates_champ = str(j['championName'])
+                version = watcher.data_dragon.versions_for_region(my_region)['v']
+                print(version = watcher.data_dragon.champions(version))
+                mates_champ = str(j['championId'])
                 mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + " - last game : " + mate_last_game
                 mates_solo_rank = "Non classé(e)"
                 for k in range(len(mates_rank)):
