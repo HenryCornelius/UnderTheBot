@@ -208,11 +208,11 @@ class MyClient(discord.Client):
                 mates.append([mates_name, mates_solo_rank, mates_champ, mates_mastery])
             
             if match_detail['info']['teams'][0]['win']:
-                bluewin = "**WINNERS**  :green_circle:  " + blue_golds + ":moneybag:"
-                redwin = "**LOOSERS**  :red_circle:  " + red_golds + ":moneybag:"
+                bluewin = "**WINNERS**  :green_circle:  " + str(blue_golds) + ":moneybag:"
+                redwin = "**LOOSERS**  :red_circle:  " + str(red_golds) + ":moneybag:"
             else:
-                bluewin = "**LOOSERS**  :red_circle:  " + blue_golds + ":moneybag:"
-                redwin = "**WINNERS**  :green_circle:  " + red_golds + ":moneybag:"
+                bluewin = "**LOOSERS**  :red_circle:  " + str(blue_golds) + ":moneybag:"
+                redwin = "**WINNERS**  :green_circle:  " + str(red_golds) + ":moneybag:"
 
             blueDragons = str(match_detail['info']['teams'][0]['objectives']['dragon']['kills'])
             blueBarons = str(match_detail['info']['teams'][0]['objectives']['baron']['kills'])
