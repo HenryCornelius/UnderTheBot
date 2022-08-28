@@ -6,6 +6,7 @@ from riotwatcher import LolWatcher, ApiError
 import random
 import lolChamp
 import compte
+from mates import Mates
 import my_embed
 import datetime
 import nacl
@@ -183,7 +184,7 @@ class MyClient(discord.Client):
             # fetch last match detail
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail)
-            mates = []
+            mates = Mates
             blue_golds = 0
             red_golds = 0
             for j in match_detail['info']['participants']:
@@ -197,16 +198,19 @@ class MyClient(discord.Client):
                 mates_role = j['lane']
                 if j['lane'] == "BOTTOM" or j['lane'] == "NONE": 
                     mates_role = j['role']
-                mates_name = str(mate['name']) + " - " + str(mates_role) 
-                mates_champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled'] + j['neutralMinionsKilled']) + "cs"
-                mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + ", " + str(mates_champ_mastery['championPoints'])  + " points"
+                mates.name = str(mate['name']) + " - " + str(mates_role) 
+                mates.champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled'] + j['neutralMinionsKilled']) + "cs"
+                mates.mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + ", " + str(mates_champ_mastery['championPoints'])  + " points"
                 mates_rank = watcher.league.by_summoner(my_region, mate['id'])
-                mates_solo_rank = "Non classé(e)"
+                mates.solo_rank = "Non classé(e)"
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
                         rank_solo = mates_rank[k]
-                        mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
-                mates.append([mates_name, mates_solo_rank, mates_champ, mates_mastery])
+                        mates.solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
+                mates.damage = str(j['totalDamageDealtToChampions']) + " dmg"
+                mates_vision = str(j['visionScore']) + " vision"
+                mates.gold = str(j['goldEarned']) + " golds - " + mates_vision
+                mates.append([mates])
 
             blue_ecart = blue_golds - red_golds
             red_ecart = red_golds - blue_golds
@@ -253,7 +257,7 @@ class MyClient(discord.Client):
                 summoner = watcher.summoner.by_name(my_region, argument)
                 summoner_rank = watcher.league.by_summoner(my_region, summoner['id'])
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
-                embed = discord.Embed(title='**'+summoner['name']+'**',description="Informations concernant le joueur "+ summoner['name'] +". Cliquez sur le nom d'invocateur ci-dessus afin d'accéder à ses données sur op.gg", url="https://euw.op.gg/summoners/euw/"+summoner['name'],colour=discord.Colour.blue() )
+                embed = discord.Embed(title='**'+summoner['name']+'**',description= "Informations concernant le joueur "+ summoner['name'] +". Cliquez sur le nom d'invocateur ci-dessus afin d'accéder à ses données sur op.gg", url="https://euw.op.gg/summoners/euw/"+summoner['name'],colour=discord.Colour.blue() )
                 url = "https://ddragon.leagueoflegends.com/cdn/" + str(version) + "/img/profileicon/" + str(summoner['profileIconId']) + ".png"
                 embed.set_thumbnail(url = url)
                 ranks = {}

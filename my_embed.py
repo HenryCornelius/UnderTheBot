@@ -20,100 +20,29 @@ def create_help_embed():
 def create_mates_embed1(mates, bluewin, blueObj):
     embed1 = discord.Embed(title=bluewin,
                         description=blueObj[0]+" Drake / "+blueObj[1]+" Nash / "+blueObj[2]+" Herald", colour=discord.Colour.blue())
-    
-    embed1.add_field(name=mates[0][0],
-                    value=mates[0][1],
+    for i in range(5):
+        embed1.add_field(name=mates[i].name,
+                    value=mates[i].solo_rank,
                     inline=True)
-    embed1.add_field(name=mates[0][2],
-                    value=mates[0][3],
+        embed1.add_field(name=mates[i].champ,
+                    value=mates[i].champ_mastery,
                     inline=True)
-    embed1.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
-    embed1.add_field(name=mates[1][0],
-                    value=mates[1][1],
-                    inline=True)
-    embed1.add_field(name=mates[1][2],
-                    value=mates[1][3],
-                    inline=True)
-    embed1.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
-    embed1.add_field(name=mates[2][0],
-                    value=mates[2][1],
-                    inline=True)
-    embed1.add_field(name=mates[2][2],
-                    value=mates[2][3],
-                    inline=True)
-    embed1.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
-    embed1.add_field(name=mates[3][0],
-                    value=mates[3][1],
-                    inline=True)
-    embed1.add_field(name=mates[3][2],
-                    value=mates[3][3],
-                    inline=True)
-    embed1.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
-    embed1.add_field(name=mates[4][0],
-                    value=mates[4][1],
-                    inline=True)
-    embed1.add_field(name=mates[4][2],
-                    value=mates[4][3],
-                    inline=True)
-    embed1.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
+        embed1.add_field(name=mates[i].gold,
+	    		    value=mates[i].damage,
+	    		    inline= True)
     return embed1
 def create_mates_embed2(mates, redwin, redObj):
     embed2 = discord.Embed(title=redwin,
                         description=redObj[0]+" Drake / "+redObj[1]+" Nash / "+redObj[2]+" Herald", colour=discord.Colour.red())
     
-    embed2.add_field(name=mates[5][0],
-                    value=mates[5][1],
+    for i in range(5):
+        embed2.add_field(name=mates[i+5].name,
+                    value=mates[i+5].solo_rank,
                     inline=True)
-    embed2.add_field(name=mates[5][2],
-                    value=mates[5][3],
+        embed2.add_field(name=mates[i+5].champ,
+                    value=mates[i+5].champ_mastery,
                     inline=True)
-    embed2.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
-    embed2.add_field(name=mates[6][0],
-                    value=mates[6][1],
-                    inline=True)
-    embed2.add_field(name=mates[6][2],
-                    value=mates[6][3],
-                    inline=True)
-    embed2.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
-    embed2.add_field(name=mates[7][0],
-                    value=mates[7][1],
-                    inline=True)
-    embed2.add_field(name=mates[7][2],
-                    value=mates[7][3],
-                    inline=True)
-    embed2.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
-    embed2.add_field(name=mates[8][0],
-                    value=mates[8][1],
-                    inline=True)
-    embed2.add_field(name=mates[8][2],
-                    value=mates[8][3],
-                    inline=True)
-    embed2.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
-    embed2.add_field(name=mates[9][0],
-                    value=mates[9][1],
-                    inline=True)
-    embed2.add_field(name=mates[9][2],
-                    value=mates[9][3],
-                    inline=True)
-    embed2.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= True,)
+        embed2.add_field(name=mates[i+5].gold,
+	    		    value=mates[i+5].damage,
+	    		    inline= True)
     return embed2
