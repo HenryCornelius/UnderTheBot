@@ -7,6 +7,7 @@ import random
 import lolChamp
 import compte
 import my_embed
+import datetime
 import nacl
 
 api_key = 'RGAPI-84d70ce7-80c8-44b7-b822-209762bc03ef'
@@ -193,7 +194,7 @@ class MyClient(discord.Client):
                     mates_role = j['role']
                 mates_name = str(mate['name']) + " - " + str(mates_role) 
                 mates_champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled']) + "cs"
-                mates_mastery = "Derniere partie de " + str(j['championName']) + " il y a " + str(mates_champ_mastery['lastPlayTime']//1000) + "s"
+                mates_mastery = "Derniere partie de " + str(j['championName']) + " le " + str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)) + "s"
                 mates_rank = watcher.league.by_summoner(my_region, mate['id'])
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
