@@ -236,7 +236,7 @@ class MyClient(discord.Client):
             my_matches = watcher.match.matchlist_by_puuid(my_region, summoner['puuid'])
             # fetch last match detail
             match_detail = watcher.match.by_id(my_region, my_matches[0])
-            print(match_detail['metadata']['participants'][0])
+            print(match_detail)
             mates = []
             for j in match_detail['metadata']['participants']:
                 mates_name = watcher.summoner.by_puuid(my_region, j)['name']
