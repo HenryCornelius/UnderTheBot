@@ -184,11 +184,10 @@ class MyClient(discord.Client):
             match_detail = watcher.match.by_id(my_region, my_matches[0])
             print(match_detail)
             mates = []
-            histo = []
             for j in match_detail['info']['participants']:
                 mate = watcher.summoner.by_id(my_region, j["summonerId"])
                 mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
-                mate_last_game = datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)
+                # mate_last_game = datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)
                 mates_role = j['lane']
                 if j['lane'] == "BOTTOM": 
                     mates_role = j['role']
