@@ -28,7 +28,7 @@ def create_help_embed():
                     inline=False)
     return embed
 
-def create_mates_embed(mates):
+def create_mates_embed1(mates):
     embed1 = discord.Embed(title='**BLUE TEAM**',
                         description='', colour=discord.Colour.blue())
     embed1.add_field(name=mates[0][0],
@@ -46,6 +46,8 @@ def create_mates_embed(mates):
     embed1.add_field(name=mates[4][0],
                     value=mates[4][1],
                     inline=False)
+    return embed1
+def create_mates_embed2(mates):
     embed2 = discord.Embed(title='**RED TEAM**',
                         description='', colour=discord.Colour.red())
     embed2.add_field(name=mates[5][0],
@@ -63,7 +65,7 @@ def create_mates_embed(mates):
     embed2.add_field(name=mates[9][0],
                     value=mates[9][1],
                     inline=False)
-    return embed1, embed2
+    return embed2
 
 class MyClient(discord.Client):
 
@@ -245,7 +247,8 @@ class MyClient(discord.Client):
                         mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
                 mates.append([mates_name, mates_solo_rank])
             
-            await message.channel.send(content=None, embed=create_mates_embed(mates))
+            await message.channel.send(content=None, embed=create_mates_embed1(mates))
+            await message.channel.send(content=None, embed=create_mates_embed2(mates))
             return
             
 
