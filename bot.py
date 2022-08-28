@@ -279,7 +279,11 @@ class MyClient(discord.Client):
             mates_array = []
 
             for j in live_match['participants']:
-                mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
+                try:
+                    mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
+                except ApiError:
+                    await message.reply(ApiError.response, mention_author=True) 
+                    return
                 mate_last_game = str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000))
                 mates_name = str(j['summonerName'])
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
