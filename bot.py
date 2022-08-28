@@ -279,7 +279,7 @@ class MyClient(discord.Client):
                 mate_last_game = str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000))
                 mates_name = str(j['summonerName'])
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
-                print(version = watcher.data_dragon.champions(version))
+                print(watcher.data_dragon.champions(version))
                 mates_champ = str(j['championId'])
                 mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + " - last game : " + mate_last_game
                 mates_solo_rank = "Non classé(e)"
