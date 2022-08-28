@@ -201,6 +201,7 @@ class MyClient(discord.Client):
                 mates_champ = str(j['championName']) + " - " + str(j['kills']) + "/" + str(j['deaths']) + "/" + str(j['assists']) + " - " + str(j['totalMinionsKilled'] + j['neutralMinionsKilled']) + "cs"
                 mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + ", " + str(mates_champ_mastery['championPoints'])  + " points"
                 mates_rank = watcher.league.by_summoner(my_region, mate['id'])
+                mates_solo_rank = "Non classé(e)"
                 for k in range(len(mates_rank)):
                     if mates_rank[k]['queueType'] == "RANKED_SOLO_5x5":
                         rank_solo = mates_rank[k]
