@@ -6,7 +6,7 @@ from riotwatcher import LolWatcher, ApiError
 import random
 import lolChamp
 import compte
-import embed
+import my_embed
 import nacl
 
 api_key = 'RGAPI-84d70ce7-80c8-44b7-b822-209762bc03ef'
@@ -34,8 +34,7 @@ class MyClient(discord.Client):
         #                                                                                                                  #
         ####################################################################################################################
         if message.content.startswith('!help'):
-            embed = embed.create_help_embed()
-            await message.channel.send(content=None, embed=embed)
+            await message.channel.send(content=None, embed=my_embed.create_help_embed())
             return
 
 
@@ -212,12 +211,9 @@ class MyClient(discord.Client):
             redHeralds = str(match_detail['info']['teams'][1]['objectives']['riftHerald']['kills'])
             redObj = [redDragons, redBarons, redHeralds]
             
-            embed1 = embed.create_mates_embed1(mates, bluewin, blueObj)
-            embed2 = embed.create_mates_embed2(mates, redwin, redObj)
-
-            await message.channel.send(content=None, embed=embed1)
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(mates, bluewin, blueObj))
             
-            await message.channel.send(content=None, embed=embed2)
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(mates, redwin, redObj))
             return
             
 
