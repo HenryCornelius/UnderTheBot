@@ -247,6 +247,7 @@ class MyClient(discord.Client):
                         rank_solo = mates_rank[k]
                         mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
                 mates.append([mates_name, mates_solo_rank])
+                count= count + 1
             
             
             await message.channel.send(content=None, embed=create_mates_embed1(mates))
