@@ -30,7 +30,7 @@ def create_help_embed():
     return embed
 
 def create_mates_embed1(mates, bluewin):
-    embed1 = discord.Embed(title='**'+bluewin+'**',
+    embed1 = discord.Embed(title=bluewin,
                         description='', colour=discord.Colour.blue())
     embed1.add_field(name=mates[0][0],
                     value=mates[0][1],
@@ -49,7 +49,7 @@ def create_mates_embed1(mates, bluewin):
                     inline=False)
     return embed1
 def create_mates_embed2(mates, redwin):
-    embed2 = discord.Embed(title='**'+redwin+'**',
+    embed2 = discord.Embed(title=redwin,
                         description='', colour=discord.Colour.red())
     embed2.add_field(name=mates[5][0],
                     value=mates[5][1],
@@ -251,11 +251,11 @@ class MyClient(discord.Client):
                 count= count + 1
             
             if match_detail['info']['teams'][0]['win']:
-                bluewin = "WINNERS"
-                redwin = "LOOSERS"
+                bluewin = "**WINNERS** :green_circle:"
+                redwin = "**LOOSERS** :red_circle:"
             else:
-                bluewin = "LOOSERS"
-                redwin = "WINNERS"
+                bluewin = "**LOOSERS** :red_circle:"
+                redwin = "**WINNERS** :green_circle:"
             
             await message.channel.send(content=None, embed=create_mates_embed1(mates, bluewin))
             
