@@ -3,8 +3,8 @@ class Compte():
         self.lolname = lolName
         self.discordname = discordName
 
-Tobia     = Compte('Tobia', 'Azko')
-Biboun    = Compte('Bìboun', 'Biboun')
+Tobia     = Compte('Ycelacellenn', 'Azko')
+Biboun    = Compte('BibounXXII', 'Biboun')
 Milan     = Compte('Milań', 'Milanetbruce')
 
 listeMembre = [Tobia, Biboun, Milan]
