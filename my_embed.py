@@ -21,9 +21,6 @@ def create_mates_embed1(mates, bluewin, blueObj):
     embed1 = discord.Embed(title=bluewin,
                         description='', colour=discord.Colour.blue())
     
-    embed1.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= False,)
     embed1.add_field(name=mates[0][0],
                     value=mates[0][1],
                     inline=True)
@@ -32,7 +29,7 @@ def create_mates_embed1(mates, bluewin, blueObj):
                     inline=True)
     embed1.add_field(name= '\u200b',
 			        value= '\u200b',
-			        inline= False,)
+			        inline= True,)
     embed1.add_field(name=mates[1][0],
                     value=mates[1][1],
                     inline=True)
@@ -41,7 +38,7 @@ def create_mates_embed1(mates, bluewin, blueObj):
                     inline=True)
     embed1.add_field(name= '\u200b',
 			        value= '\u200b',
-			        inline= False,)
+			        inline= True,)
     embed1.add_field(name=mates[2][0],
                     value=mates[2][1],
                     inline=True)
@@ -50,7 +47,7 @@ def create_mates_embed1(mates, bluewin, blueObj):
                     inline=True)
     embed1.add_field(name= '\u200b',
 			        value= '\u200b',
-			        inline= False,)
+			        inline= True,)
     embed1.add_field(name=mates[3][0],
                     value=mates[3][1],
                     inline=True)
@@ -59,7 +56,7 @@ def create_mates_embed1(mates, bluewin, blueObj):
                     inline=True)
     embed1.add_field(name= '\u200b',
 			        value= '\u200b',
-			        inline= False,)
+			        inline= True,)
     embed1.add_field(name=mates[4][0],
                     value=mates[4][1],
                     inline=True)
@@ -72,9 +69,6 @@ def create_mates_embed2(mates, redwin, redObj):
     embed2 = discord.Embed(title=redwin,
                         description='', colour=discord.Colour.red())
     
-    embed2.add_field(name= '\u200b',
-			        value= '\u200b',
-			        inline= False,)
     embed2.add_field(name=mates[5][0],
                     value=mates[5][1],
                     inline=True)
@@ -83,7 +77,7 @@ def create_mates_embed2(mates, redwin, redObj):
                     inline=True)
     embed2.add_field(name= '\u200b',
 			        value= '\u200b',
-			        inline= False,)
+			        inline= True,)
     embed2.add_field(name=mates[6][0],
                     value=mates[6][1],
                     inline=True)
@@ -92,7 +86,7 @@ def create_mates_embed2(mates, redwin, redObj):
                     inline=True)
     embed2.add_field(name= '\u200b',
 			        value= '\u200b',
-			        inline= False,)
+			        inline= True,)
     embed2.add_field(name=mates[7][0],
                     value=mates[7][1],
                     inline=True)
@@ -101,7 +95,7 @@ def create_mates_embed2(mates, redwin, redObj):
                     inline=True)
     embed2.add_field(name= '\u200b',
 			        value= '\u200b',
-			        inline= False,)
+			        inline= True,)
     embed2.add_field(name=mates[8][0],
                     value=mates[8][1],
                     inline=True)
@@ -110,7 +104,7 @@ def create_mates_embed2(mates, redwin, redObj):
                     inline=True)
     embed2.add_field(name= '\u200b',
 			        value= '\u200b',
-			        inline= False,)
+			        inline= True,)
     embed2.add_field(name=mates[9][0],
                     value=mates[9][1],
                     inline=True)
