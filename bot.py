@@ -277,13 +277,19 @@ class MyClient(discord.Client):
             live_game_lentgh = live_match['gameLength']
             
             mates_array = []
-
+            
             for j in live_match['participants']:
+                erreur_masteries = True
                 try:
                     mates_champ_mastery = watcher.champion_mastery.by_summoner_by_champion(my_region, j["summonerId"], j['championId'])
                 except ApiError:
-                    await message.reply("erreur pendant la récup des maitrises", mention_author=True) 
-                mate_last_game = str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000))
+                    erreur_masteries = False
+                if erreur_masteries:
+                    mate_last_game = str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000))
+                    mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + " - last game : " + mate_last_game
+                else:
+                    mate_last_game = "Erreur pendant la récup"
+                    mates_mastery = "Erreur pendant la récup"
                 mates_name = str(j['summonerName'])
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
                 print(watcher.data_dragon.champions(version))
@@ -296,7 +302,7 @@ class MyClient(discord.Client):
                         rank_solo = mates_rank[k]
                         mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
 
-                live_mate = Mates(mates_name, mates_solo_rank, mates_champ, mates_mastery, live_game_lentgh, " ")
+                live_mate = Mates(mates_name, mates_solo_rank, mates_champ, mates_mastery, live_game_lentgh, "\u200b")
                 mates_array.append(live_mate)
             
             live_desc = live_match['gameType']
