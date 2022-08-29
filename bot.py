@@ -11,7 +11,7 @@ import my_embed
 import datetime
 import nacl
 
-api_key = 'RGAPI-84d70ce7-80c8-44b7-b822-209762bc03ef'
+api_key = 'RGAPI-89f7ef2e-4507-4f18-905d-40ca256fa165'
 watcher = LolWatcher(api_key)
 my_region = 'euw1'
 
