@@ -275,10 +275,10 @@ class MyClient(discord.Client):
                 await message.reply("Pas en game actuellement", mention_author=True) 
                 return
             
-            live_game_lentgh = live_match['gameLength']
-            heures, live_game_lentgh = divmod(live_game_lentgh, 3600)
-            minutes, live_game_lentgh = divmod(live_game_lentgh, 60)
-            game_lenght = str(minutes) + "min" + str(live_game_lentgh)
+            secondes = live_match['gameLength']
+            heures, secondes = divmod(secondes, 3600)
+            minutes, secondes = divmod(secondes, 60)
+            game_lenght = str(minutes) + "min" + str(secondes)
             
             mates_array = []
             
@@ -295,9 +295,13 @@ class MyClient(discord.Client):
                     mate_last_game = "Erreur pendant la récup"
                     mates_mastery = "Erreur pendant la récup"
                 mates_name = str(j['summonerName'])
-                version = watcher.data_dragon.versions_for_region(my_region)['v']
-                print(watcher.data_dragon.champions(version))
                 mates_champ = str(j['championId'])
+                version = watcher.data_dragon.versions_for_region(my_region)['v']
+                champions = watcher.data_dragon.champions(version)
+                for p in champions['data']:
+                    if p['key'] == j['championId']:
+                        mates_champ = str(p['id'])
+                
                 mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + " - last game : " + mate_last_game
                 mates_rank = watcher.league.by_summoner(my_region, j['summonerId'])
                 mates_solo_rank = "Non classé(e)"
