@@ -274,7 +274,11 @@ class MyClient(discord.Client):
             except ApiError:
                 await message.reply("Pas en game actuellement", mention_author=True) 
                 return
+            
             live_game_lentgh = live_match['gameLength']
+            heures, live_game_lentgh = divmod(live_game_lentgh, 3600)
+            minutes, live_game_lentgh = divmod(live_game_lentgh, 60)
+            game_lenght = str(minutes) + "min" + str(live_game_lentgh)
             
             mates_array = []
             
@@ -302,7 +306,7 @@ class MyClient(discord.Client):
                         rank_solo = mates_rank[k]
                         mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
 
-                live_mate = Mates(mates_name, mates_solo_rank, mates_champ, mates_mastery, live_game_lentgh, "\u200b")
+                live_mate = Mates(mates_name, mates_solo_rank, mates_champ, mates_mastery, game_lenght, "\u200b")
                 mates_array.append(live_mate)
             
             live_desc = live_match['gameType']
