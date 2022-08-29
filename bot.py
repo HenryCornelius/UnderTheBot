@@ -238,8 +238,8 @@ class MyClient(discord.Client):
             redBarons = str(match_detail['info']['teams'][1]['objectives']['baron']['kills'])
             redHeralds = str(match_detail['info']['teams'][1]['objectives']['riftHerald']['kills'])
             redObj = [redDragons, redBarons, redHeralds]
-            desc1 = redObj[0]+" Drake / "+redObj[1]+" Nash / "+redObj[2]+" Herald"
-            desc2 = blueObj[0]+" Drake / "+blueObj[1]+" Nash / "+blueObj[2]+" Herald"
+            desc1 = blueObj[0]+" Drake / "+blueObj[1]+" Nash / "+blueObj[2]+" Herald"
+            desc2 = redObj[0]+" Drake / "+redObj[1]+" Nash / "+redObj[2]+" Herald"
             
             await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, bluewin, desc1))
             
@@ -299,7 +299,6 @@ class MyClient(discord.Client):
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
                 #champions = watcher.data_dragon.champions(version)
                 
-                mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + " - last game : " + mate_last_game
                 mates_rank = watcher.league.by_summoner(my_region, j['summonerId'])
                 mates_solo_rank = "Non classé(e)"
                 for k in range(len(mates_rank)):
