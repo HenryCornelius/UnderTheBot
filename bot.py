@@ -306,14 +306,14 @@ class MyClient(discord.Client):
                         rank_solo = mates_rank[k]
                         mates_solo_rank = rank_solo['tier'] + " " + rank_solo['rank'] + " - " + str(rank_solo['leaguePoints']) + " LP "
 
-                live_mate = Mates(mates_name, mates_solo_rank, mates_champ, mates_mastery, game_lenght, "\u200b")
+                live_mate = Mates(mates_name, mates_solo_rank, mates_champ, mates_mastery, "\u200b", "\u200b")
                 mates_array.append(live_mate)
             
             live_desc = live_match['gameType']
 
-            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(mates_array, "BLUE TEAM", live_desc))
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed1(mates_array, "BLUE TEAM", live_desc + " - " + game_lenght))
             
-            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(mates_array, "RED TEAM", live_desc))
+            await message.channel.send(content=None, embed=my_embed.create_mates_embed2(mates_array, "RED TEAM", live_desc + " - " + game_lenght))
             return
 
 
