@@ -299,8 +299,8 @@ class MyClient(discord.Client):
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
                 champions = watcher.data_dragon.champions(version)
                 for p in champions['data']:
-                    if p[0]['key'] == j['championId']:
-                        mates_champ = str(p[0]['id'])
+                    if p[0][3] == j['championId']:
+                        mates_champ = str(p[0][2])
                 
                 mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + " - last game : " + mate_last_game
                 mates_rank = watcher.league.by_summoner(my_region, j['summonerId'])
