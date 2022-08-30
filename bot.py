@@ -1,5 +1,6 @@
 # This example requires the 'message_content' privileged intent to function.
 from distutils.log import info
+from email import message
 from importlib.metadata import metadata
 import discord
 from riotwatcher import LolWatcher, ApiError
@@ -27,7 +28,7 @@ my_region = 'euw1'
 bot = commands.Bot(command_prefix='/', intents=intents)
 @bot.command(name='test')
 async def _test(ctx, arg):
-    await ctx.send(arg)          
+    await ctx.send(message.content)          
 
            
 class MyClient(discord.Client):
