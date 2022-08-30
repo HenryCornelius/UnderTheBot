@@ -163,7 +163,7 @@ class MyClient(discord.Client):
         #                                          Commande !checkLast                                                     #
         #                                                                                                                  #
         ####################################################################################################################
-        if message.content.startswith('!checkLast') or message.content.startswith('!checklast'):
+        if message.content.startswith('!checkLast') or message.content.startswith('!checklast') or message.content.startswith('!cl'):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
                 summonername = msg_input.split(' ')[1]
@@ -240,6 +240,11 @@ class MyClient(discord.Client):
             redObj = [redDragons, redBarons, redHeralds]
             desc1 = blueObj[0]+" Drake / "+blueObj[1]+" Nash / "+blueObj[2]+" Herald"
             desc2 = redObj[0]+" Drake / "+redObj[1]+" Nash / "+redObj[2]+" Herald"
+
+            #Test datadragon
+            version = watcher.data_dragon.versions_for_region(my_region)['v']
+            champions = watcher.data_dragon.champions(version)
+            print(champions[0])
             
             await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, bluewin, desc1))
             
@@ -252,7 +257,7 @@ class MyClient(discord.Client):
         #                                                                                                                  #
         ####################################################################################################################
 
-        if message.content.startswith('!checkMate') or message.content.startswith('!checkmate'):
+        if message.content.startswith('!checkMate') or message.content.startswith('!checkmate') or message.content.startswith('!cm'):
             msg_input = message.content[1:]
             if msg_input.count(' ') > 0:
                 summonername = msg_input.split(' ')[1]
