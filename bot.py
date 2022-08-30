@@ -13,8 +13,6 @@ import json
 import nacl
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix='/')
-
 #@bot.command(name='list')
 #async def _list(ctx, arg):
 #    pass
@@ -34,6 +32,7 @@ class MyClient(discord.Client):
             activity_string = 'sur {} serveurs.'.format(len(self.guilds))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_string))
 
+    bot = commands.Bot(command_prefix='/')
     @bot.command()
     async def test(ctx, arg):
         await ctx.send(arg)
