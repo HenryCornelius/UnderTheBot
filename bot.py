@@ -244,10 +244,9 @@ class MyClient(discord.Client):
             #Test datadragon
             version = watcher.data_dragon.versions_for_region(my_region)['v']
             champions = watcher.data_dragon.champions(version)
-            with open(champions) as my_champs:
-                data = json.load(my_champs)
-            for champion in data:
-                print(champion)
+            for champion in champions['data']:
+                for champion_id in champion['key']:
+                    print(champion_id)
             
             await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, bluewin, desc1))
             
