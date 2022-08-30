@@ -240,12 +240,6 @@ class MyClient(discord.Client):
             redObj = [redDragons, redBarons, redHeralds]
             desc1 = blueObj[0]+" Drake / "+blueObj[1]+" Nash / "+blueObj[2]+" Herald"
             desc2 = redObj[0]+" Drake / "+redObj[1]+" Nash / "+redObj[2]+" Herald"
-
-            #Test datadragon
-            version = watcher.data_dragon.versions_for_region(my_region)['v']
-            champions = watcher.data_dragon.champions(version)
-            names_list = [v.get('key') for v in champions['data'].values()]
-            print(names_list)
             
             await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, bluewin, desc1))
             
@@ -301,11 +295,14 @@ class MyClient(discord.Client):
                     mate_last_game = "Erreur pendant la récup"
                     mates_mastery = "Erreur pendant la récup"
                 mates_name = str(j['summonerName'])
-                mates_champ = str(j['championId'])
+                mates_champ = j['championId']
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
                 champions = watcher.data_dragon.champions(version)
-                print(champions[0])
-                
+                for champion in champions['data'].values():
+                    if champion.get('key') == mates_champ:
+                        mates_champ = str(champion.get('name'))
+                    else:
+                        mates_champ = str(mates_champ)
                 mates_rank = watcher.league.by_summoner(my_region, j['summonerId'])
                 mates_solo_rank = "Non classé(e)"
                 for k in range(len(mates_rank)):
