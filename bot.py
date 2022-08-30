@@ -9,6 +9,7 @@ import compte
 from mates import Mates
 import my_embed
 import datetime
+import json
 import nacl
 
 api_key = 'RGAPI-89f7ef2e-4507-4f18-905d-40ca256fa165'
@@ -243,8 +244,10 @@ class MyClient(discord.Client):
             #Test datadragon
             version = watcher.data_dragon.versions_for_region(my_region)['v']
             champions = watcher.data_dragon.champions(version)
-            #for champion in champions['data']:
-            print(champions)
+            with open(champions) as my_champs:
+                data = json.load(my_champs)
+            for champion in data:
+                print(champion)
             
             await message.channel.send(content=None, embed=my_embed.create_mates_embed1(matesArray, bluewin, desc1))
             
