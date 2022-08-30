@@ -11,11 +11,18 @@ import my_embed
 import datetime
 import json
 import nacl
+from discord.ext import commands
+
+bot = commands.Bot(command_prefix='/')
+
+#@bot.command(name='list')
+#async def _list(ctx, arg):
+#    pass
 
 api_key = 'RGAPI-89f7ef2e-4507-4f18-905d-40ca256fa165'
 watcher = LolWatcher(api_key)
 my_region = 'euw1'
-
+                                    
 class MyClient(discord.Client):
 
     async def on_ready(self):
@@ -26,6 +33,10 @@ class MyClient(discord.Client):
         else:
             activity_string = 'sur {} serveurs.'.format(len(self.guilds))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_string))
+
+    @bot.command()
+    async def test(ctx, arg):
+        await ctx.send(arg)
 
     async def on_message(self, message):
         # we do not want the bot to reply to itself
@@ -383,8 +394,10 @@ class MyClient(discord.Client):
         if message.content.startswith('!leave'):
             await message.guild.voice_client.disconnect()
             return
+        
 intents = discord.Intents.default()
 intents.message_content = True
 
 client = MyClient(intents=intents)
 client.run('MTAxMjI5MjI0NzYzNjY4NDgyMA.GeE3F_.KRa9UdareJVjM1QOhY38Bl0UF9hW5-wCE2BHJs')
+
