@@ -289,7 +289,7 @@ class MyClient(discord.Client):
                 except ApiError:
                     erreur_masteries = False
                 if erreur_masteries:
-                    mate_last_game = str(datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000))
+                    mate_last_game = datetime.datetime.fromtimestamp(mates_champ_mastery['lastPlayTime'] / 1000)
                     mate_last_game = mate_last_game.strftime("%d-%m-%Y, %H:%M:%S")
                     mates_mastery = "Maitrise " + str(mates_champ_mastery['championLevel']) + " - last game : " + mate_last_game
                 else:
