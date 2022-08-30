@@ -20,7 +20,13 @@ from discord.ext import commands
 api_key = 'RGAPI-89f7ef2e-4507-4f18-905d-40ca256fa165'
 watcher = LolWatcher(api_key)
 my_region = 'euw1'
-                                    
+
+bot = commands.Bot(command_prefix='/', intents=discord.Intents.default())
+@bot.command(name='test')
+async def _test(ctx, arg):
+    await ctx.send(arg)          
+
+           
 class MyClient(discord.Client):
 
     async def on_ready(self):
@@ -32,10 +38,7 @@ class MyClient(discord.Client):
             activity_string = 'sur {} serveurs.'.format(len(self.guilds))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_string))
 
-    bot = commands.Bot(command_prefix='/', intents=discord.Intents.default())
-    @bot.command()
-    async def test(ctx, arg):
-        await ctx.send(arg)
+
 
     async def on_message(self, message):
         # we do not want the bot to reply to itself
@@ -397,6 +400,7 @@ class MyClient(discord.Client):
 intents = discord.Intents.default()
 intents.message_content = True
 
+
 client = MyClient(intents=intents)
-client.run('MTAxMjI5MjI0NzYzNjY4NDgyMA.GeE3F_.KRa9UdareJVjM1QOhY38Bl0UF9hW5-wCE2BHJs')
+bot.run('MTAxMjI5MjI0NzYzNjY4NDgyMA.GeE3F_.KRa9UdareJVjM1QOhY38Bl0UF9hW5-wCE2BHJs')
 
