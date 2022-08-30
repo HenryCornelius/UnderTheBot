@@ -297,7 +297,8 @@ class MyClient(discord.Client):
                 mates_name = str(j['summonerName'])
                 mates_champ = str(j['championId'])
                 version = watcher.data_dragon.versions_for_region(my_region)['v']
-                #champions = watcher.data_dragon.champions(version)
+                champions = watcher.data_dragon.champions(version)
+                print(champions[0])
                 
                 mates_rank = watcher.league.by_summoner(my_region, j['summonerId'])
                 mates_solo_rank = "Non classé(e)"
