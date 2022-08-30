@@ -32,7 +32,7 @@ class MyClient(discord.Client):
             activity_string = 'sur {} serveurs.'.format(len(self.guilds))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_string))
 
-    bot = commands.Bot(command_prefix='/')
+    bot = commands.Bot(command_prefix='/', intents=discord.Intents.default())
     @bot.command()
     async def test(ctx, arg):
         await ctx.send(arg)
