@@ -26,11 +26,26 @@ watcher = LolWatcher(api_key)
 my_region = 'euw1'
 
 bot = commands.Bot(command_prefix='/', intents=intents)
-@bot.command(name='test')
-async def _test(ctx, arg):
-    await ctx.send(message.content )          
+        
+def setup(bot):
+    bot.add_cog(Test(bot))
 
-           
+
+class Test(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self._last_member = None
+
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+        channel = member.guild.system_channel
+        if channel is not None:
+            await channel.send(f'Welcome {member.mention}.')
+
+    @bot.command(name='test')
+    async def _test(ctx, arg):
+        await ctx.send(message.content )  
+
 class MyClient(discord.Client):
 
     async def on_ready(self):
@@ -401,7 +416,7 @@ class MyClient(discord.Client):
             await message.guild.voice_client.disconnect()
             return
 
-
+bot.load_extension("cogs.maincog")
 client = MyClient(intents=intents)
-client.run('MTAxMjI5MjI0NzYzNjY4NDgyMA.GeE3F_.KRa9UdareJVjM1QOhY38Bl0UF9hW5-wCE2BHJs')
+bot.run('MTAxMjI5MjI0NzYzNjY4NDgyMA.GeE3F_.KRa9UdareJVjM1QOhY38Bl0UF9hW5-wCE2BHJs')
 
