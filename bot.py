@@ -17,11 +17,14 @@ from discord.ext import commands
 #async def _list(ctx, arg):
 #    pass
 
+intents = discord.Intents.default()
+intents.message_content = True
+
 api_key = 'RGAPI-89f7ef2e-4507-4f18-905d-40ca256fa165'
 watcher = LolWatcher(api_key)
 my_region = 'euw1'
 
-bot = commands.Bot(command_prefix='/', intents=discord.Intents.default())
+bot = commands.Bot(command_prefix='/', intents=intents)
 @bot.command(name='test')
 async def _test(ctx, arg):
     await ctx.send(arg)          
@@ -396,9 +399,6 @@ class MyClient(discord.Client):
         if message.content.startswith('!leave'):
             await message.guild.voice_client.disconnect()
             return
-        
-intents = discord.Intents.default()
-intents.message_content = True
 
 
 client = MyClient(intents=intents)
