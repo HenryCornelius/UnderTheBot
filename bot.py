@@ -28,7 +28,7 @@ my_region = 'euw1'
 bot = commands.Bot(command_prefix='/', intents=intents)
 @bot.command(name='test')
 async def _test(ctx, arg):
-    await ctx.send(message.content)          
+    await ctx.send(message.content )          
 
            
 class MyClient(discord.Client):
@@ -403,5 +403,5 @@ class MyClient(discord.Client):
 
 
 client = MyClient(intents=intents)
-bot.run('MTAxMjI5MjI0NzYzNjY4NDgyMA.GeE3F_.KRa9UdareJVjM1QOhY38Bl0UF9hW5-wCE2BHJs')
+client.run('MTAxMjI5MjI0NzYzNjY4NDgyMA.GeE3F_.KRa9UdareJVjM1QOhY38Bl0UF9hW5-wCE2BHJs')
 
