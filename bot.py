@@ -20,7 +20,7 @@ from discord.ext import commands
 intents = discord.Intents.default()
 intents.message_content = True
 
-api_key = ''
+api_key = 'RGAPI-89f7ef2e-4507-4f18-905d-40ca256fa165'
 watcher = LolWatcher(api_key)
 my_region = 'euw1'
 
